@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://adp.protocol/schema/federation_query.json",
+  "title": "FederationQuery",
+  "description": "A federation query wrapping a DiscoveryIntent for inter-node ADP discovery",
+  "type": "object",
+  "version": "0.1.0",
+  "required": ["federation_id", "version", "source_node", "intent", "timestamp"],
+  "properties": {
+    "federation_id": {"type": "string"},
+    "version": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+    "source_node": {"type": "string", "format": "uri"},
+    "intent": {"$ref": "discovery_intent.json"},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "ttl_hops": {"type": "integer", "minimum": 1, "maximum": 10},
+    "metadata": {"type": "object"}
+  },
+  "additionalProperties": false
+}

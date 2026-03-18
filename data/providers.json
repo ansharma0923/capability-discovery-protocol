@@ -1,0 +1,67 @@
+[
+  {
+    "provider_id": "11111111-1111-1111-1111-111111111111",
+    "version": "0.1.0",
+    "name": "ElectroMart",
+    "description": "Premium consumer electronics, audio equipment, and smart home devices",
+    "categories": ["product"],
+    "regions": ["us-east", "us-west", "eu-west"],
+    "trust_level": "certified",
+    "avg_latency_ms": 150,
+    "availability_score": 0.999,
+    "compliance_certifications": ["ISO9001", "CE"],
+    "ttl_seconds": 86400
+  },
+  {
+    "provider_id": "22222222-2222-2222-2222-222222222222",
+    "version": "0.1.0",
+    "name": "CloudCompute Pro",
+    "description": "High-performance cloud compute resources including GPU clusters and serverless",
+    "categories": ["compute", "api"],
+    "regions": ["us-east", "us-west", "eu-west", "ap-southeast"],
+    "trust_level": "certified",
+    "avg_latency_ms": 50,
+    "availability_score": 0.9999,
+    "compliance_certifications": ["SOC2", "ISO27001", "HIPAA"],
+    "ttl_seconds": 86400
+  },
+  {
+    "provider_id": "33333333-3333-3333-3333-333333333333",
+    "version": "0.1.0",
+    "name": "DataStream API",
+    "description": "Real-time and batch data APIs covering finance, weather, social, and IoT",
+    "categories": ["data", "api"],
+    "regions": ["us-east", "eu-west"],
+    "trust_level": "verified",
+    "avg_latency_ms": 80,
+    "availability_score": 0.998,
+    "compliance_certifications": ["SOC2", "GDPR"],
+    "ttl_seconds": 86400
+  },
+  {
+    "provider_id": "44444444-4444-4444-4444-444444444444",
+    "version": "0.1.0",
+    "name": "LLM Services Hub",
+    "description": "Enterprise LLM inference, fine-tuning, and AI agent hosting services",
+    "categories": ["agent", "service", "api"],
+    "regions": ["us-east", "us-west", "eu-west"],
+    "trust_level": "verified",
+    "avg_latency_ms": 200,
+    "availability_score": 0.997,
+    "compliance_certifications": ["SOC2"],
+    "ttl_seconds": 86400
+  },
+  {
+    "provider_id": "55555555-5555-5555-5555-555555555555",
+    "version": "0.1.0",
+    "name": "Enterprise Solutions Co",
+    "description": "B2B enterprise software services, integrations, and managed solutions",
+    "categories": ["service", "api"],
+    "regions": ["us-east", "eu-west", "ap-southeast"],
+    "trust_level": "certified",
+    "avg_latency_ms": 100,
+    "availability_score": 0.9995,
+    "compliance_certifications": ["SOC2", "ISO27001", "HIPAA", "PCI-DSS"],
+    "ttl_seconds": 86400
+  }
+]

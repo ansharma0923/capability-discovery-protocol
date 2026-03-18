@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://adp.protocol/schema/provider_descriptor.json",
+  "title": "ProviderDescriptor",
+  "description": "Describes a provider of agents, services, or products in the ADP registry",
+  "type": "object",
+  "version": "0.1.0",
+  "required": ["provider_id", "version", "name", "description", "categories", "regions", "registered_at"],
+  "properties": {
+    "provider_id": {"type": "string"},
+    "version": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+    "name": {"type": "string", "minLength": 1, "maxLength": 200},
+    "description": {"type": "string", "minLength": 1, "maxLength": 2000},
+    "categories": {
+      "type": "array",
+      "items": {"type": "string", "enum": ["product", "service", "agent", "data", "compute", "api"]},
+      "minItems": 1
+    },
+    "regions": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "trust_level": {"type": "string", "enum": ["unverified", "basic", "verified", "certified"]},
+    "contact_url": {"type": "string", "format": "uri"},
+    "api_endpoint": {"type": "string", "format": "uri"},
+    "compliance_certifications": {"type": "array", "items": {"type": "string"}},
+    "avg_latency_ms": {"type": "integer", "minimum": 0},
+    "availability_score": {"type": "number", "minimum": 0, "maximum": 1},
+    "metadata": {"type": "object"},
+    "registered_at": {"type": "string", "format": "date-time"},
+    "updated_at": {"type": "string", "format": "date-time"},
+    "ttl_seconds": {"type": "integer", "minimum": 1}
+  },
+  "additionalProperties": false
+}

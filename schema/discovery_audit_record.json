@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://adp.protocol/schema/discovery_audit_record.json",
+  "title": "DiscoveryAuditRecord",
+  "description": "An audit record for a completed discovery pipeline execution",
+  "type": "object",
+  "version": "0.1.0",
+  "required": ["audit_id", "version", "intent_id", "intent_text", "category", "candidates_found", "results_returned", "pipeline_stages", "federation_used", "duration_ms", "recorded_at"],
+  "properties": {
+    "audit_id": {"type": "string"},
+    "version": {"type": "string"},
+    "intent_id": {"type": "string"},
+    "intent_text": {"type": "string"},
+    "category": {"type": "string"},
+    "candidates_found": {"type": "integer", "minimum": 0},
+    "results_returned": {"type": "integer", "minimum": 0},
+    "pipeline_stages": {"type": "array", "items": {"type": "string"}},
+    "top_score": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+    "federation_used": {"type": "boolean"},
+    "duration_ms": {"type": "number", "minimum": 0},
+    "metadata": {"type": "object"},
+    "recorded_at": {"type": "string", "format": "date-time"}
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://adp.protocol/schema/discovery_candidate.json",
+  "title": "DiscoveryCandidate",
+  "description": "A ranked discovery result candidate with score breakdown and explanation",
+  "type": "object",
+  "version": "0.1.0",
+  "required": ["offering_id", "provider_id", "total_score", "score_breakdown", "explanation"],
+  "properties": {
+    "offering_id": {"type": "string"},
+    "provider_id": {"type": "string"},
+    "total_score": {"type": "number", "minimum": 0, "maximum": 1},
+    "score_breakdown": {
+      "type": "object",
+      "required": ["relevance", "price", "latency", "availability", "trust", "freshness"],
+      "properties": {
+        "relevance": {"type": "number", "minimum": 0, "maximum": 1},
+        "price": {"type": "number", "minimum": 0, "maximum": 1},
+        "latency": {"type": "number", "minimum": 0, "maximum": 1},
+        "availability": {"type": "number", "minimum": 0, "maximum": 1},
+        "trust": {"type": "number", "minimum": 0, "maximum": 1},
+        "freshness": {"type": "number", "minimum": 0, "maximum": 1}
+      },
+      "additionalProperties": false
+    },
+    "explanation": {
+      "type": "object",
+      "required": ["summary"],
+      "properties": {
+        "matched_constraints": {"type": "array", "items": {"type": "string"}},
+        "relevance_reason": {"type": "string"},
+        "price_fit": {"type": "string"},
+        "latency_fit": {"type": "string"},
+        "trust_reason": {"type": "string"},
+        "summary": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "_source": {"type": "string", "enum": ["local", "federated"]},
+    "_federated": {"type": "boolean"}
+  },
+  "additionalProperties": false
+}
