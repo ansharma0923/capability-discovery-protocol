@@ -91,7 +91,7 @@ class TestDiscoverEndpoint:
         })
         assert response.status_code == 200
         data = response.json()
-        # No compute offerings in test setup from conftest, but should return 200
+        # No compute offerings in test setup from setup_registry fixture, but should return 200
         assert data["category"] == "compute"
 
     def test_discover_invalid_category(self, client):

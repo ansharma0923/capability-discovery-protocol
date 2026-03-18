@@ -1,6 +1,6 @@
 """Weighted ranking scorer with explanation."""
 from typing import List, Dict, Any, Optional, Tuple
-from datetime import datetime
+from datetime import datetime, timezone
 from ..registry.models import OfferingDescriptor, ProviderDescriptor, TrustLevel
 from ..intent.models import DiscoveryIntent
 from .profiles import get_profile, RankingWeights
@@ -59,7 +59,11 @@ def score_offering(
 
     # Freshness score (based on how recently updated)
     freshness_score = 1.0
-    age_hours = (datetime.utcnow() - offering.updated_at).total_seconds() / 3600
+    updated = offering.updated_at
+    if updated.tzinfo is None:
+        from datetime import timezone as _tz
+        updated = updated.replace(tzinfo=_tz.utc)
+    age_hours = (datetime.now(timezone.utc) - updated).total_seconds() / 3600
     if age_hours > 1:
         freshness_score = max(0.3, 1.0 - (age_hours / (offering.ttl_seconds / 3600)))
 

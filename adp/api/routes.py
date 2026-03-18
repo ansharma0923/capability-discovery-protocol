@@ -1,7 +1,7 @@
 """FastAPI route definitions."""
 from fastapi import APIRouter, HTTPException, Depends
 from typing import Dict, Any
-from datetime import datetime
+from datetime import datetime, timezone
 
 from ..intent.models import DiscoveryIntent
 from ..registry.models import ProviderDescriptor, OfferingDescriptor
@@ -152,5 +152,5 @@ def health_check(store: RegistryStore = Depends(get_registry)) -> Dict[str, Any]
             "providers": len(providers),
             "offerings": len(offerings),
         },
-        "timestamp": datetime.utcnow().isoformat(),
+        "timestamp": datetime.now(timezone.utc).isoformat(),
     }

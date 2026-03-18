@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field
 from typing import Optional, List, Dict, Any
 from enum import Enum
-from datetime import datetime
+from datetime import datetime, timezone
 import uuid
 
 
@@ -26,8 +26,8 @@ class ProviderDescriptor(BaseModel):
     avg_latency_ms: Optional[int] = None
     availability_score: float = Field(default=0.99, ge=0, le=1)
     metadata: Dict[str, Any] = Field(default_factory=dict)
-    registered_at: datetime = Field(default_factory=datetime.utcnow)
-    updated_at: datetime = Field(default_factory=datetime.utcnow)
+    registered_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     ttl_seconds: int = Field(default=3600)
 
 
@@ -49,7 +49,7 @@ class OfferingDescriptor(BaseModel):
     compliance: List[str] = Field(default_factory=list)
     capabilities: List[str] = Field(default_factory=list)
     metadata: Dict[str, Any] = Field(default_factory=dict)
-    registered_at: datetime = Field(default_factory=datetime.utcnow)
-    updated_at: datetime = Field(default_factory=datetime.utcnow)
+    registered_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     ttl_seconds: int = Field(default=3600)
     active: bool = True

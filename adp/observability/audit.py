@@ -1,6 +1,6 @@
 """Audit logging and observability."""
 import uuid
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, Any, List, Optional
 from ..registry.store import get_store
 
@@ -31,7 +31,7 @@ class DiscoveryAuditRecord:
         self.federation_used = federation_used
         self.duration_ms = duration_ms
         self.metadata = metadata
-        self.recorded_at = datetime.utcnow().isoformat()
+        self.recorded_at = datetime.now(timezone.utc).isoformat()
 
     def to_dict(self) -> Dict[str, Any]:
         return {

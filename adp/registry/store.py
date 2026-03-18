@@ -1,7 +1,7 @@
 """In-memory registry store with TTL support."""
 import time
 from typing import Dict, Optional, List, Any
-from datetime import datetime
+from datetime import datetime, timezone
 from .models import ProviderDescriptor, OfferingDescriptor
 
 
@@ -31,7 +31,7 @@ class RegistryStore:
         provider = self.get_provider(provider_id)
         if provider is None:
             return None
-        updated = provider.model_copy(update={**updates, "updated_at": datetime.utcnow()})
+        updated = provider.model_copy(update={**updates, "updated_at": datetime.now(timezone.utc)})
         self._providers[provider_id]["data"] = updated
         self._providers[provider_id]["expires_at"] = time.time() + updated.ttl_seconds
         return updated
@@ -63,7 +63,7 @@ class RegistryStore:
         offering = self.get_offering(offering_id)
         if offering is None:
             return None
-        updated = offering.model_copy(update={**updates, "updated_at": datetime.utcnow()})
+        updated = offering.model_copy(update={**updates, "updated_at": datetime.now(timezone.utc)})
         self._offerings[offering_id]["data"] = updated
         self._offerings[offering_id]["expires_at"] = time.time() + updated.ttl_seconds
         return updated

@@ -1,7 +1,7 @@
 """Core discovery pipeline - 14 stages."""
 import time
 from typing import List, Dict, Any, Optional, Tuple
-from datetime import datetime
+from datetime import datetime, timezone
 from ..intent.models import DiscoveryIntent
 from ..intent.parser import normalize_intent, extract_keywords
 from ..registry.store import get_store, RegistryStore
@@ -158,5 +158,5 @@ def run_discovery_pipeline(
             "duration_ms": duration_ms,
             "federation_used": bool(federated_results),
         },
-        "generated_at": datetime.utcnow().isoformat(),
+        "generated_at": datetime.now(timezone.utc).isoformat(),
     }
