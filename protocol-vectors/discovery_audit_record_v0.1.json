@@ -1,0 +1,33 @@
+{
+  "audit_id": "audit-550e8400-e29b-41d4-a716-446655440003",
+  "version": "0.1.0",
+  "intent_id": "550e8400-e29b-41d4-a716-446655440000",
+  "intent_text": "I need a high-performance noise-canceling headphone under $300 for remote work",
+  "category": "product",
+  "candidates_found": 2,
+  "results_returned": 1,
+  "pipeline_stages": [
+    "parse_request",
+    "normalize_intent",
+    "extract_constraints",
+    "retrieve_candidates",
+    "deterministic_filtering",
+    "semantic_matching",
+    "capability_validation",
+    "policy_filtering",
+    "ranking",
+    "explanation_generation",
+    "federation_merge",
+    "deduplication",
+    "audit_logging",
+    "response_generation"
+  ],
+  "top_score": 0.8542,
+  "federation_used": false,
+  "duration_ms": 4.2,
+  "metadata": {
+    "source": "protocol-vector-test",
+    "keywords": ["noise-canceling", "headphone", "remote", "work"]
+  },
+  "recorded_at": "2024-01-15T10:00:05Z"
+}

@@ -1,4 +1,4 @@
-.PHONY: install test run-api lint format clean
+.PHONY: install test run-api lint format clean validate-schema run-examples
 
 install:
 	pip install -e ".[dev]"
@@ -14,6 +14,16 @@ lint:
 
 format:
 	ruff format adp/ tests/ examples/
+
+validate-schema:
+	pytest tests/schema_validation/ tests/protocol_vectors/ -v
+
+run-examples:
+	python examples/product_discovery.py
+	python examples/service_discovery.py
+	python examples/agent_discovery.py
+	python examples/federation_demo.py
+	python examples/policy_demo.py
 
 clean:
 	find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true

@@ -26,6 +26,11 @@ class TestProtocolVectors:
             "offering_descriptor_v0.1.json",
             "discovery_result_v0.1.json",
             "federation_query_v0.1.json",
+            "discovery_response_v0.1.json",
+            "federation_response_v0.1.json",
+            "discovery_audit_record_v0.1.json",
+            "discovery_intent_service_v0.1.json",
+            "discovery_intent_agent_v0.1.json",
         ]
         for name in expected:
             assert (VECTORS_DIR / name).exists(), f"Vector file missing: {name}"
@@ -50,6 +55,26 @@ class TestProtocolVectors:
         vector = load_vector("federation_query_v0.1.json")
         assert isinstance(vector, dict)
 
+    def test_discovery_response_vector_is_valid_json(self):
+        vector = load_vector("discovery_response_v0.1.json")
+        assert isinstance(vector, dict)
+
+    def test_federation_response_vector_is_valid_json(self):
+        vector = load_vector("federation_response_v0.1.json")
+        assert isinstance(vector, dict)
+
+    def test_discovery_audit_record_vector_is_valid_json(self):
+        vector = load_vector("discovery_audit_record_v0.1.json")
+        assert isinstance(vector, dict)
+
+    def test_service_intent_vector_is_valid_json(self):
+        vector = load_vector("discovery_intent_service_v0.1.json")
+        assert isinstance(vector, dict)
+
+    def test_agent_intent_vector_is_valid_json(self):
+        vector = load_vector("discovery_intent_agent_v0.1.json")
+        assert isinstance(vector, dict)
+
 
 class TestVectorSchemaConformance:
     def test_discovery_intent_vector_validates(self):
@@ -70,6 +95,21 @@ class TestVectorSchemaConformance:
     def test_discovery_result_vector_validates(self):
         schema = load_schema("discovery_result.json")
         vector = load_vector("discovery_result_v0.1.json")
+        jsonschema.validate(vector, schema)
+
+    def test_discovery_audit_record_vector_validates(self):
+        schema = load_schema("discovery_audit_record.json")
+        vector = load_vector("discovery_audit_record_v0.1.json")
+        jsonschema.validate(vector, schema)
+
+    def test_service_intent_vector_validates(self):
+        schema = load_schema("discovery_intent.json")
+        vector = load_vector("discovery_intent_service_v0.1.json")
+        jsonschema.validate(vector, schema)
+
+    def test_agent_intent_vector_validates(self):
+        schema = load_schema("discovery_intent.json")
+        vector = load_vector("discovery_intent_agent_v0.1.json")
         jsonschema.validate(vector, schema)
 
 
@@ -111,6 +151,34 @@ class TestVectorFieldValues:
         assert "source_node" in vector
         assert "federation_id" in vector
 
+    def test_discovery_response_vector_has_pipeline(self):
+        vector = load_vector("discovery_response_v0.1.json")
+        assert "pipeline" in vector
+        assert "stages_executed" in vector["pipeline"]
+        assert vector["pipeline"]["federation_used"] is False
+
+    def test_federation_response_vector_has_responding_node(self):
+        vector = load_vector("federation_response_v0.1.json")
+        assert "responding_node" in vector
+        assert "results" in vector
+        assert vector["total_results"] >= 0
+
+    def test_audit_record_vector_has_pipeline_stages(self):
+        vector = load_vector("discovery_audit_record_v0.1.json")
+        assert "pipeline_stages" in vector
+        assert len(vector["pipeline_stages"]) > 0
+        assert "duration_ms" in vector
+
+    def test_service_intent_has_correct_category(self):
+        vector = load_vector("discovery_intent_service_v0.1.json")
+        assert vector["category"] == "service"
+        assert "compliance" in vector["constraints"]
+
+    def test_agent_intent_has_correct_category(self):
+        vector = load_vector("discovery_intent_agent_v0.1.json")
+        assert vector["category"] == "agent"
+        assert "max_latency_ms" in vector["constraints"]
+
 
 class TestVectorParsability:
     """Test that vectors can be parsed by ADP Python models."""
@@ -134,3 +202,17 @@ class TestVectorParsability:
         offering = OfferingDescriptor(**vector)
         assert offering.category == "product"
         assert offering.active is True
+
+    def test_service_intent_vector_parseable_by_model(self):
+        from adp.intent.models import DiscoveryIntent
+        vector = load_vector("discovery_intent_service_v0.1.json")
+        intent = DiscoveryIntent(**vector)
+        assert intent.category.value == "service"
+        assert "SOC2" in intent.constraints.compliance
+
+    def test_agent_intent_vector_parseable_by_model(self):
+        from adp.intent.models import DiscoveryIntent
+        vector = load_vector("discovery_intent_agent_v0.1.json")
+        intent = DiscoveryIntent(**vector)
+        assert intent.category.value == "agent"
+        assert intent.constraints.max_latency_ms == 300
