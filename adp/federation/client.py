@@ -4,15 +4,70 @@ from typing import List, Dict, Any, Optional
 import httpx
 
 from ..intent.models import DiscoveryIntent
+from ..registry.models import OfferingDescriptor, ProviderDescriptor, TrustLevel
+
+
+class LocalFederationSimulator:
+    """
+    Simulates a remote ADP federation node for local testing and demos.
+
+    Each simulated node has its own in-memory registry of providers and
+    offerings.  When queried, the node runs the same deterministic
+    filtering + semantic scoring logic as the real pipeline so that the
+    returned results are meaningful and reproducible.
+    """
+
+    def __init__(self, node_url: str, offerings: List[OfferingDescriptor], providers: List[ProviderDescriptor]):
+        self.node_url = node_url
+        self._offerings = offerings
+        self._providers = {p.provider_id: p for p in providers}
+
+    def query(self, intent: DiscoveryIntent) -> Dict[str, Any]:
+        """Return a federation-response-shaped dict for the given intent."""
+        import time
+        from datetime import datetime, timezone
+        from ..matching.filter import apply_filters
+        from ..matching.semantic import rank_by_semantic
+        from ..ranking.scorer import rank_candidates
+
+        start = time.time()
+
+        filtered = apply_filters(intent, self._offerings)
+        scored = rank_by_semantic(intent, filtered)
+        ranked = rank_candidates(intent, scored, self._providers)
+
+        max_results = intent.preferences.max_results
+        results = ranked[:max_results]
+        for r in results:
+            r["_source"] = "federated"
+            r["_node"] = self.node_url
+
+        duration_ms = round((time.time() - start) * 1000, 2)
+        return {
+            "results": results,
+            "total_results": len(results),
+            "responding_node": self.node_url,
+            "duration_ms": duration_ms,
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+        }
 
 
 class FederationClient:
     def __init__(self, nodes: List[str], timeout: float = 5.0):
         self.nodes = nodes
         self.timeout = timeout
+        # Simulator nodes registered at runtime (used when the real node URL
+        # matches a registered simulator).
+        self._simulators: Dict[str, LocalFederationSimulator] = {}
+
+    def register_simulator(self, simulator: LocalFederationSimulator) -> None:
+        """Register a local simulator for a node URL (used in tests/demos)."""
+        self._simulators[simulator.node_url] = simulator
 
     async def query_node(self, node_url: str, intent: DiscoveryIntent) -> Optional[Dict[str, Any]]:
-        """Query a single remote node."""
+        """Query a single remote node, falling back to simulator if registered."""
+        if node_url in self._simulators:
+            return self._simulators[node_url].query(intent)
         try:
             async with httpx.AsyncClient(timeout=self.timeout) as client:
                 response = await client.post(

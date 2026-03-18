@@ -1,0 +1,52 @@
+{
+  "intent_id": "550e8400-e29b-41d4-a716-446655440000",
+  "version": "0.1.0",
+  "category": "product",
+  "total_candidates": 2,
+  "total_results": 1,
+  "results": [
+    {
+      "offering_id": "off-vector-test-001",
+      "provider_id": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+      "total_score": 0.8542,
+      "score_breakdown": {
+        "relevance": 0.2700,
+        "price": 0.1498,
+        "latency": 0.1500,
+        "availability": 0.1485,
+        "trust": 0.1125,
+        "freshness": 0.0234
+      },
+      "explanation": {
+        "matched_constraints": ["price <= $300.0", "region in ['us-east', 'us-west']"],
+        "relevance_reason": "Semantic match score: 0.90",
+        "price_fit": "Price $249.99 vs budget $300.0",
+        "latency_fit": "No latency constraint",
+        "trust_reason": "Provider trust level: verified",
+        "summary": "Offering 'Premium ANC Headphones Pro' scored 0.85"
+      },
+      "_source": "local"
+    }
+  ],
+  "pipeline": {
+    "stages_executed": [
+      "parse_request",
+      "normalize_intent",
+      "extract_constraints",
+      "retrieve_candidates",
+      "deterministic_filtering",
+      "semantic_matching",
+      "capability_validation",
+      "policy_filtering",
+      "ranking",
+      "explanation_generation",
+      "federation_merge",
+      "deduplication",
+      "audit_logging",
+      "response_generation"
+    ],
+    "duration_ms": 4.2,
+    "federation_used": false
+  },
+  "generated_at": "2024-01-15T10:00:05Z"
+}

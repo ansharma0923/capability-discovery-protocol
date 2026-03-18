@@ -1,0 +1,36 @@
+{
+  "federation_id": "fed-550e8400-e29b-41d4-a716-446655440002",
+  "version": "0.1.0",
+  "responding_node": "https://node2.adp.example.com",
+  "results": [
+    {
+      "offering_id": "fed-off-node2-001",
+      "provider_id": "bbbbbbbb-cccc-dddd-eeee-ffffffffffff",
+      "total_score": 0.7810,
+      "score_breakdown": {
+        "relevance": 0.2400,
+        "price": 0.1350,
+        "latency": 0.1500,
+        "availability": 0.1395,
+        "trust": 0.0900,
+        "freshness": 0.0265
+      },
+      "explanation": {
+        "matched_constraints": ["price <= $300.0", "region in ['us-east', 'us-west']"],
+        "relevance_reason": "Semantic match score: 0.80",
+        "price_fit": "Price $199.99 vs budget $300.0",
+        "latency_fit": "No latency constraint",
+        "trust_reason": "Provider trust level: basic",
+        "summary": "Offering 'ANC Headphones Lite' scored 0.78"
+      },
+      "_source": "federated"
+    }
+  ],
+  "total_results": 1,
+  "timestamp": "2024-01-15T10:00:03Z",
+  "duration_ms": 38.5,
+  "metadata": {
+    "source": "protocol-vector-test",
+    "node_version": "0.1.0"
+  }
+}
