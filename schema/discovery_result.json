@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://adp.protocol/schema/discovery_result.json",
+  "title": "DiscoveryResult",
+  "description": "A single discovery result item with offering details and ranking score",
+  "type": "object",
+  "version": "0.1.0",
+  "required": ["offering_id", "provider_id", "total_score"],
+  "properties": {
+    "offering_id": {"type": "string"},
+    "provider_id": {"type": "string"},
+    "total_score": {"type": "number", "minimum": 0, "maximum": 1},
+    "score_breakdown": {
+      "type": "object",
+      "properties": {
+        "relevance": {"type": "number"},
+        "price": {"type": "number"},
+        "latency": {"type": "number"},
+        "availability": {"type": "number"},
+        "trust": {"type": "number"},
+        "freshness": {"type": "number"}
+      }
+    },
+    "explanation": {
+      "type": "object",
+      "properties": {
+        "matched_constraints": {"type": "array", "items": {"type": "string"}},
+        "relevance_reason": {"type": "string"},
+        "price_fit": {"type": "string"},
+        "latency_fit": {"type": "string"},
+        "trust_reason": {"type": "string"},
+        "summary": {"type": "string"}
+      }
+    },
+    "_source": {"type": "string"},
+    "_federated": {"type": "boolean"}
+  },
+  "additionalProperties": false
+}

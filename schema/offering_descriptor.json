@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://adp.protocol/schema/offering_descriptor.json",
+  "title": "OfferingDescriptor",
+  "description": "Describes a single offering (product, service, agent, data, compute, or API) in the ADP registry",
+  "type": "object",
+  "version": "0.1.0",
+  "required": ["offering_id", "version", "provider_id", "name", "description", "category", "registered_at"],
+  "properties": {
+    "offering_id": {"type": "string"},
+    "version": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+    "provider_id": {"type": "string"},
+    "name": {"type": "string", "minLength": 1, "maxLength": 200},
+    "description": {"type": "string", "minLength": 1, "maxLength": 2000},
+    "category": {
+      "type": "string",
+      "enum": ["product", "service", "agent", "data", "compute", "api"]
+    },
+    "tags": {"type": "array", "items": {"type": "string"}},
+    "price": {"type": ["number", "null"], "minimum": 0},
+    "price_unit": {"type": ["string", "null"]},
+    "currency": {"type": "string"},
+    "region": {"type": "array", "items": {"type": "string"}},
+    "latency_ms": {"type": ["integer", "null"], "minimum": 0},
+    "delivery_days": {"type": ["integer", "null"], "minimum": 0},
+    "availability": {"type": "number", "minimum": 0, "maximum": 1},
+    "compliance": {"type": "array", "items": {"type": "string"}},
+    "capabilities": {"type": "array", "items": {"type": "string"}},
+    "metadata": {"type": "object"},
+    "registered_at": {"type": "string", "format": "date-time"},
+    "updated_at": {"type": "string", "format": "date-time"},
+    "ttl_seconds": {"type": "integer", "minimum": 1},
+    "active": {"type": "boolean"}
+  },
+  "additionalProperties": false
+}

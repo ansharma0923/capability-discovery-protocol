@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://adp.protocol/schema/discovery_intent.json",
+  "title": "DiscoveryIntent",
+  "description": "An intent-driven discovery request in the ADP protocol",
+  "type": "object",
+  "version": "0.1.0",
+  "required": ["intent_id", "version", "intent_text", "category", "created_at"],
+  "properties": {
+    "intent_id": {"type": "string"},
+    "version": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+    "intent_text": {"type": "string", "minLength": 1, "maxLength": 2000},
+    "category": {
+      "type": "string",
+      "enum": ["product", "service", "agent", "data", "compute", "api"]
+    },
+    "constraints": {
+      "type": "object",
+      "properties": {
+        "max_price": {"type": ["number", "null"], "minimum": 0},
+        "currency": {"type": "string"},
+        "region": {"type": ["array", "null"], "items": {"type": "string"}},
+        "max_latency_ms": {"type": ["integer", "null"], "minimum": 0},
+        "delivery_days": {"type": ["integer", "null"], "minimum": 0},
+        "compliance": {"type": ["array", "null"], "items": {"type": "string"}},
+        "availability_min": {"type": ["number", "null"], "minimum": 0, "maximum": 1}
+      },
+      "additionalProperties": false
+    },
+    "preferences": {
+      "type": "object",
+      "properties": {
+        "ranking_profile": {
+          "type": "string",
+          "enum": ["default", "cost_optimized", "latency_optimized", "trust_optimized"]
+        },
+        "max_results": {"type": "integer", "minimum": 1, "maximum": 100},
+        "include_federation": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "metadata": {"type": "object"},
+    "created_at": {"type": "string", "format": "date-time"}
+  },
+  "additionalProperties": false
+}

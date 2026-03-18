@@ -1,2 +1,140 @@
-# agent-discovery-protocol
-A protocol for intent-driven discovery of agents, services, and products.
+# Agent Discovery Protocol (ADP)
+
+![Python](https://img.shields.io/badge/python-3.11%2B-blue) ![License](https://img.shields.io/badge/license-Apache%202.0-green) ![Version](https://img.shields.io/badge/version-0.1.0-orange)
+
+**Intent-driven discovery of agents, services, products, data, and APIs.**
+
+ADP solves the problem of how AI agents, applications, and humans can discover the right provider for any capability — using natural language intent rather than rigid query syntax.
+
+## Key Features
+
+- 🎯 **Intent-driven**: Natural language discovery requests
+- 🔍 **14-stage pipeline**: Parse → Filter → Semantic Match → Validate → Rank → Audit → Respond
+- 🏆 **Explainable ranking**: Score breakdowns with human-readable explanations
+- 🌐 **Federation**: Query distributed ADP nodes
+- 🛡️ **Policy engine**: Pluggable provider trust and compliance rules
+- 📊 **Audit logging**: Full observability for every discovery
+- ⚡ **6 categories**: product, service, agent, data, compute, api
+
+## Architecture
+
+```
+DiscoveryIntent
+      │
+      ▼
+┌─────────────────────────────────────────────────┐
+│              14-Stage Pipeline                   │
+│  1. parse_request      8. policy_filtering       │
+│  2. normalize_intent   9. ranking                │
+│  3. extract_constraints 10. explanation_gen      │
+│  4. retrieve_candidates 11. federation_merge     │
+│  5. deterministic_filter 12. deduplication       │
+│  6. semantic_matching   13. audit_logging        │
+│  7. capability_validation 14. response_gen       │
+└─────────────────────────────────────────────────┘
+      │
+      ▼
+  DiscoveryResponse (ranked results + explanations)
+```
+
+## Quick Start
+
+### Install
+
+```bash
+pip install -e ".[dev]"
+```
+
+### Run Server
+
+```bash
+uvicorn adp.main:app --reload --port 8000
+```
+
+### First Query
+
+```bash
+curl -X POST http://localhost:8000/discover \
+  -H "Content-Type: application/json" \
+  -d '{
+    "intent_text": "I need noise-canceling headphones under $300",
+    "category": "product",
+    "constraints": {"max_price": 300.0, "region": ["us-east"]}
+  }'
+```
+
+### Example Response
+
+```json
+{
+  "intent_id": "550e8400-e29b-41d4-a716-446655440000",
+  "version": "0.1.0",
+  "category": "product",
+  "total_candidates": 3,
+  "total_results": 2,
+  "results": [
+    {
+      "offering_id": "off-elec-001",
+      "provider_id": "11111111-1111-1111-1111-111111111111",
+      "total_score": 0.8542,
+      "score_breakdown": {
+        "relevance": 0.27, "price": 0.15, "latency": 0.15,
+        "availability": 0.149, "trust": 0.15, "freshness": 0.05
+      },
+      "explanation": {
+        "summary": "Offering 'ProANC Headphones X1' scored 0.85",
+        "matched_constraints": ["price <= $300.0", "region in ['us-east']"]
+      }
+    }
+  ],
+  "pipeline": {
+    "stages_executed": ["parse_request", "...", "response_generation"],
+    "duration_ms": 2.4,
+    "federation_used": false
+  }
+}
+```
+
+## Repository Structure
+
+```
+├── adp/              # Python implementation
+│   ├── intent/       # Intent parsing and models
+│   ├── registry/     # Provider and offering registry
+│   ├── matching/     # Filter, semantic, validator
+│   ├── ranking/      # Scorer and profiles
+│   ├── federation/   # Federated discovery client
+│   ├── policy/       # Policy enforcement engine
+│   ├── observability/# Audit logging
+│   ├── api/          # FastAPI routes and middleware
+│   └── service/      # Core discovery pipeline
+├── schema/           # JSON Schema Draft 7 definitions
+├── protocol-vectors/ # Canonical test fixtures
+├── data/             # Sample providers and offerings
+├── docs/             # Protocol documentation
+├── examples/         # Usage examples
+├── tests/            # Test suites
+└── sdk/              # SDK stubs (Go planned)
+```
+
+## Testing
+
+```bash
+# All tests
+pytest tests/ -v
+
+# By suite
+pytest tests/unit/ -v
+pytest tests/functional/ -v
+pytest tests/schema_validation/ -v
+pytest tests/protocol_vectors/ -v
+pytest tests/interoperability/ -v
+```
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
+
+## License
+
+Apache 2.0 — see [LICENSE](LICENSE).

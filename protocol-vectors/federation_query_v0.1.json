@@ -1,0 +1,27 @@
+{
+  "federation_id": "fed-550e8400-e29b-41d4-a716-446655440001",
+  "version": "0.1.0",
+  "source_node": "https://node1.adp.example.com",
+  "intent": {
+    "intent_id": "550e8400-e29b-41d4-a716-446655440000",
+    "version": "0.1.0",
+    "intent_text": "I need a high-performance noise-canceling headphone under $300 for remote work",
+    "category": "product",
+    "constraints": {
+      "max_price": 300.0,
+      "currency": "USD",
+      "region": ["us-east", "us-west"],
+      "delivery_days": 5
+    },
+    "preferences": {
+      "ranking_profile": "default",
+      "max_results": 10,
+      "include_federation": false
+    },
+    "metadata": {"source": "protocol-vector-test"},
+    "created_at": "2024-01-15T10:00:00Z"
+  },
+  "timestamp": "2024-01-15T10:00:01Z",
+  "ttl_hops": 3,
+  "metadata": {"source": "protocol-vector-test"}
+}

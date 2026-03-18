@@ -1,0 +1,16 @@
+{
+  "provider_id": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+  "version": "0.1.0",
+  "name": "Test Provider",
+  "description": "A test provider for protocol vector validation",
+  "categories": ["product", "service"],
+  "regions": ["us-east", "us-west"],
+  "trust_level": "verified",
+  "compliance_certifications": ["SOC2", "ISO27001"],
+  "avg_latency_ms": 100,
+  "availability_score": 0.999,
+  "metadata": {"source": "protocol-vector-test"},
+  "registered_at": "2024-01-15T10:00:00Z",
+  "updated_at": "2024-01-15T10:00:00Z",
+  "ttl_seconds": 86400
+}

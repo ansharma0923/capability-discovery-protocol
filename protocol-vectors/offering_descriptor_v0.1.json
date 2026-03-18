@@ -1,0 +1,23 @@
+{
+  "offering_id": "off-vector-test-001",
+  "version": "0.1.0",
+  "provider_id": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+  "name": "Premium ANC Headphones Pro",
+  "description": "Professional noise-canceling headphones with 40hr battery, hi-fi audio",
+  "category": "product",
+  "tags": ["headphones", "anc", "noise-canceling", "bluetooth", "premium"],
+  "price": 249.99,
+  "price_unit": null,
+  "currency": "USD",
+  "region": ["us-east", "us-west"],
+  "latency_ms": null,
+  "delivery_days": 3,
+  "availability": 0.99,
+  "compliance": ["CE", "FCC"],
+  "capabilities": ["anc", "bluetooth", "hi-fi", "40hr-battery"],
+  "metadata": {"source": "protocol-vector-test"},
+  "registered_at": "2024-01-15T10:00:00Z",
+  "updated_at": "2024-01-15T10:00:00Z",
+  "ttl_seconds": 86400,
+  "active": true
+}
