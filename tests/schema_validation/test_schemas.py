@@ -1,8 +1,9 @@
 """Tests for JSON schema validation."""
 import json
 from pathlib import Path
-import pytest
+
 import jsonschema
+import pytest
 
 SCHEMA_DIR = Path(__file__).parent.parent.parent / "schema"
 VECTORS_DIR = Path(__file__).parent.parent.parent / "protocol-vectors"

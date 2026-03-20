@@ -1,8 +1,8 @@
 """Functional tests for the /register endpoints."""
 import pytest
 from fastapi.testclient import TestClient
+
 from adp.main import app
-from adp.registry.store import get_store
 
 
 @pytest.fixture

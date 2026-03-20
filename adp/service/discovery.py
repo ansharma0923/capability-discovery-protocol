@@ -1,17 +1,18 @@
 """Core discovery pipeline - 14 stages."""
 import time
-from typing import List, Dict, Any, Optional, Tuple
 from datetime import datetime, timezone
+from typing import Any, Dict, List, Optional, Tuple
+
 from ..intent.models import DiscoveryIntent
-from ..intent.parser import normalize_intent, extract_keywords
-from ..registry.store import get_store, RegistryStore
-from ..registry.models import OfferingDescriptor, ProviderDescriptor
+from ..intent.parser import extract_keywords, normalize_intent
 from ..matching.filter import apply_filters
 from ..matching.semantic import rank_by_semantic
 from ..matching.validator import validate_capability
+from ..observability.audit import DiscoveryAuditRecord, log_audit
 from ..policy.engine import get_policy_engine
 from ..ranking.scorer import rank_candidates
-from ..observability.audit import DiscoveryAuditRecord, log_audit
+from ..registry.models import OfferingDescriptor, ProviderDescriptor
+from ..registry.store import RegistryStore, get_store
 
 
 def run_discovery_pipeline(

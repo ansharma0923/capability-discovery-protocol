@@ -1,11 +1,13 @@
 """Policy engine demo example."""
-import sys
 import os
+import sys
+
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from adp.registry.models import ProviderDescriptor, OfferingDescriptor, TrustLevel
-from adp.policy.engine import PolicyEngine, ActiveOnlyPolicy, VerifiedProviderPolicy, PolicyRule
-from typing import Optional, Tuple
+from typing import Tuple
+
+from adp.policy.engine import ActiveOnlyPolicy, PolicyEngine, PolicyRule, VerifiedProviderPolicy
+from adp.registry.models import OfferingDescriptor, ProviderDescriptor, TrustLevel
 
 
 class SOC2RequiredPolicy(PolicyRule):

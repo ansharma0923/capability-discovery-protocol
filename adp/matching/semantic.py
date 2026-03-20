@@ -1,8 +1,9 @@
 """Semantic matching engine."""
 from typing import List, Tuple
-from ..registry.models import OfferingDescriptor
+
 from ..intent.models import DiscoveryIntent
 from ..intent.parser import extract_keywords
+from ..registry.models import OfferingDescriptor
 
 
 def semantic_score(intent: DiscoveryIntent, offering: OfferingDescriptor) -> float:

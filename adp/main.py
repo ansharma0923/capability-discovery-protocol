@@ -1,15 +1,16 @@
 """ADP FastAPI application entry point."""
-import logging
 import json
+import logging
 from contextlib import asynccontextmanager
 from pathlib import Path
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from .api.middleware import RequestLoggingMiddleware
 from .api.routes import router
+from .registry.models import OfferingDescriptor, ProviderDescriptor
 from .registry.store import get_store
-from .registry.models import ProviderDescriptor, OfferingDescriptor
 
 logging.basicConfig(
     level=logging.INFO,

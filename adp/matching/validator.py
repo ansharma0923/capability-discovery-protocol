@@ -1,7 +1,8 @@
 """Capability validation - ensures provider can fulfill the intent."""
-from typing import List, Optional, Tuple
-from ..registry.models import OfferingDescriptor, ProviderDescriptor
+from typing import Optional, Tuple
+
 from ..intent.models import DiscoveryIntent
+from ..registry.models import OfferingDescriptor, ProviderDescriptor
 
 
 def validate_capability(

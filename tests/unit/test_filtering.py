@@ -1,8 +1,7 @@
 """Tests for deterministic filtering."""
-import pytest
-from adp.intent.models import DiscoveryIntent, Category, Constraints
-from adp.registry.models import OfferingDescriptor
+from adp.intent.models import Category, Constraints, DiscoveryIntent
 from adp.matching.filter import apply_filters
+from adp.registry.models import OfferingDescriptor
 
 
 def make_offering(**kwargs) -> OfferingDescriptor:

@@ -1,7 +1,8 @@
 """Request logging middleware."""
+import logging
 import time
 import uuid
-import logging
+
 from fastapi import Request
 from starlette.middleware.base import BaseHTTPMiddleware
 

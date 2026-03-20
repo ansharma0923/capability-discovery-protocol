@@ -1,10 +1,11 @@
 """Service discovery example."""
-import sys
 import os
+import sys
+
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from adp.intent.models import DiscoveryIntent, Category, Constraints, Preferences
-from adp.registry.models import ProviderDescriptor, OfferingDescriptor, TrustLevel
+from adp.intent.models import Category, Constraints, DiscoveryIntent, Preferences
+from adp.registry.models import OfferingDescriptor, ProviderDescriptor, TrustLevel
 from adp.registry.store import RegistryStore
 from adp.service.discovery import run_discovery_pipeline
 

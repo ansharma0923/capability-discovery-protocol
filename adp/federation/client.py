@@ -1,10 +1,11 @@
 """Federation client for querying remote ADP nodes."""
 import asyncio
-from typing import List, Dict, Any, Optional
+from typing import Any, Dict, List, Optional
+
 import httpx
 
 from ..intent.models import DiscoveryIntent
-from ..registry.models import OfferingDescriptor, ProviderDescriptor, TrustLevel
+from ..registry.models import OfferingDescriptor, ProviderDescriptor
 
 
 class LocalFederationSimulator:
@@ -26,6 +27,7 @@ class LocalFederationSimulator:
         """Return a federation-response-shaped dict for the given intent."""
         import time
         from datetime import datetime, timezone
+
         from ..matching.filter import apply_filters
         from ..matching.semantic import rank_by_semantic
         from ..ranking.scorer import rank_candidates

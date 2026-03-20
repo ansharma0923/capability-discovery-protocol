@@ -1,7 +1,7 @@
 """Tests for protocol vector validation."""
 import json
 from pathlib import Path
-import pytest
+
 import jsonschema
 
 SCHEMA_DIR = Path(__file__).parent.parent.parent / "schema"

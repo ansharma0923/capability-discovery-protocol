@@ -1,8 +1,10 @@
 """Tests for the registry store."""
 import time
+
 import pytest
+
+from adp.registry.models import OfferingDescriptor, ProviderDescriptor, TrustLevel
 from adp.registry.store import RegistryStore
-from adp.registry.models import ProviderDescriptor, OfferingDescriptor, TrustLevel
 
 
 @pytest.fixture

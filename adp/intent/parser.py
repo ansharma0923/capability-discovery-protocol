@@ -1,5 +1,6 @@
 """Intent parsing and normalization."""
 from typing import List
+
 from .models import DiscoveryIntent
 
 

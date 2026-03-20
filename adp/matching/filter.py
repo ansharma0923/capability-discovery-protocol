@@ -1,7 +1,8 @@
 """Deterministic constraint-based filtering."""
 from typing import List
-from ..registry.models import OfferingDescriptor
+
 from ..intent.models import DiscoveryIntent
+from ..registry.models import OfferingDescriptor
 
 
 def apply_filters(

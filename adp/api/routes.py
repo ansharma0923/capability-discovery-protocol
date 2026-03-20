@@ -1,13 +1,14 @@
 """FastAPI route definitions."""
-from fastapi import APIRouter, HTTPException, Depends
-from typing import Dict, Any
 from datetime import datetime, timezone
+from typing import Any, Dict
 
-from ..intent.models import DiscoveryIntent
-from ..registry.models import ProviderDescriptor, OfferingDescriptor
-from ..registry.store import get_store, RegistryStore
-from ..service.discovery import run_discovery_pipeline
+from fastapi import APIRouter, Depends, HTTPException
+
 from ..federation.client import get_federation_client
+from ..intent.models import DiscoveryIntent
+from ..registry.models import OfferingDescriptor, ProviderDescriptor
+from ..registry.store import RegistryStore, get_store
+from ..service.discovery import run_discovery_pipeline
 
 router = APIRouter()
 

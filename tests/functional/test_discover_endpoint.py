@@ -1,9 +1,10 @@
 """Functional tests for the /discover endpoint."""
 import pytest
 from fastapi.testclient import TestClient
+
 from adp.main import app
+from adp.registry.models import OfferingDescriptor, ProviderDescriptor, TrustLevel
 from adp.registry.store import get_store
-from adp.registry.models import ProviderDescriptor, OfferingDescriptor, TrustLevel
 
 
 @pytest.fixture(autouse=True)

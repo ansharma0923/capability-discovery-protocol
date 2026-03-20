@@ -1,8 +1,9 @@
 """In-memory registry store with TTL support."""
 import time
-from typing import Dict, Optional, List, Any
 from datetime import datetime, timezone
-from .models import ProviderDescriptor, OfferingDescriptor
+from typing import Any, Dict, List, Optional
+
+from .models import OfferingDescriptor, ProviderDescriptor
 
 
 class RegistryStore:

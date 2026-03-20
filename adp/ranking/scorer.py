@@ -1,9 +1,10 @@
 """Weighted ranking scorer with explanation."""
-from typing import List, Dict, Any, Optional, Tuple
 from datetime import datetime, timezone
-from ..registry.models import OfferingDescriptor, ProviderDescriptor, TrustLevel
+from typing import Any, Dict, List, Optional, Tuple
+
 from ..intent.models import DiscoveryIntent
-from .profiles import get_profile, RankingWeights
+from ..registry.models import OfferingDescriptor, ProviderDescriptor, TrustLevel
+from .profiles import RankingWeights, get_profile
 
 TRUST_SCORES = {
     TrustLevel.UNVERIFIED: 0.1,

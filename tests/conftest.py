@@ -2,10 +2,10 @@
 import pytest
 from fastapi.testclient import TestClient
 
+from adp.intent.models import Category, Constraints, DiscoveryIntent, Preferences
 from adp.main import app
+from adp.registry.models import OfferingDescriptor, ProviderDescriptor, TrustLevel
 from adp.registry.store import RegistryStore
-from adp.registry.models import ProviderDescriptor, OfferingDescriptor, TrustLevel
-from adp.intent.models import DiscoveryIntent, Category, Constraints, Preferences
 
 
 @pytest.fixture

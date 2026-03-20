@@ -1,5 +1,6 @@
 """Policy engine for enforcing discovery policies."""
-from typing import List, Dict, Any, Optional, Tuple
+from typing import Dict, List, Optional, Tuple
+
 from ..registry.models import OfferingDescriptor, ProviderDescriptor
 
 

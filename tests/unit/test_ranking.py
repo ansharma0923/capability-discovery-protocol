@@ -1,9 +1,10 @@
 """Tests for the ranking scorer."""
 import pytest
-from adp.intent.models import DiscoveryIntent, Category, Constraints, Preferences, RankingProfile
+
+from adp.intent.models import Category, Constraints, DiscoveryIntent, Preferences, RankingProfile
+from adp.ranking.profiles import get_profile
+from adp.ranking.scorer import rank_candidates, score_offering
 from adp.registry.models import OfferingDescriptor, ProviderDescriptor, TrustLevel
-from adp.ranking.scorer import score_offering, rank_candidates, TRUST_SCORES
-from adp.ranking.profiles import get_profile, PROFILES
 
 
 @pytest.fixture
