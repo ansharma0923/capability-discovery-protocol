@@ -192,7 +192,6 @@ class TestEndToEndPipeline:
         assert "fed-offering-001" in fed_ids
 
     def test_audit_log_recorded(self, populated_store):
-        initial_count = len(populated_store.get_audit_logs(limit=1000))
         intent = DiscoveryIntent(
             intent_text="headphones",
             category=Category.PRODUCT,
