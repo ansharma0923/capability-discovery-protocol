@@ -1,11 +1,10 @@
 """Interoperability tests - end-to-end pipeline validation."""
-import pytest
-from fastapi.testclient import TestClient
 
-from adp.main import app
-from adp.registry.store import RegistryStore, get_store
-from adp.registry.models import ProviderDescriptor, OfferingDescriptor, TrustLevel
-from adp.intent.models import DiscoveryIntent, Category, Constraints, Preferences
+import pytest
+
+from adp.intent.models import Category, Constraints, DiscoveryIntent, Preferences
+from adp.registry.models import OfferingDescriptor, ProviderDescriptor, TrustLevel
+from adp.registry.store import RegistryStore
 from adp.service.discovery import run_discovery_pipeline
 
 
@@ -15,77 +14,89 @@ def populated_store():
     store = RegistryStore()
 
     # Product provider
-    store.register_provider(ProviderDescriptor(
-        provider_id="interop-prov-product",
-        name="ElectroMart",
-        description="Consumer electronics",
-        categories=["product"],
-        regions=["us-east", "us-west"],
-        trust_level=TrustLevel.CERTIFIED,
-    ))
+    store.register_provider(
+        ProviderDescriptor(
+            provider_id="interop-prov-product",
+            name="ElectroMart",
+            description="Consumer electronics",
+            categories=["product"],
+            regions=["us-east", "us-west"],
+            trust_level=TrustLevel.CERTIFIED,
+        )
+    )
 
     # Service provider
-    store.register_provider(ProviderDescriptor(
-        provider_id="interop-prov-service",
-        name="Enterprise Services",
-        description="B2B services",
-        categories=["service"],
-        regions=["us-east"],
-        trust_level=TrustLevel.VERIFIED,
-    ))
+    store.register_provider(
+        ProviderDescriptor(
+            provider_id="interop-prov-service",
+            name="Enterprise Services",
+            description="B2B services",
+            categories=["service"],
+            regions=["us-east"],
+            trust_level=TrustLevel.VERIFIED,
+        )
+    )
 
     # Agent provider
-    store.register_provider(ProviderDescriptor(
-        provider_id="interop-prov-agent",
-        name="LLM Hub",
-        description="LLM services",
-        categories=["agent"],
-        regions=["us-east", "us-west"],
-        trust_level=TrustLevel.VERIFIED,
-    ))
+    store.register_provider(
+        ProviderDescriptor(
+            provider_id="interop-prov-agent",
+            name="LLM Hub",
+            description="LLM services",
+            categories=["agent"],
+            regions=["us-east", "us-west"],
+            trust_level=TrustLevel.VERIFIED,
+        )
+    )
 
     # Product offerings
     for i in range(3):
-        store.register_offering(OfferingDescriptor(
-            offering_id=f"interop-off-product-{i}",
-            provider_id="interop-prov-product",
-            name=f"Headphone Model {i}",
-            description=f"Noise-canceling headphones model {i} with bluetooth",
-            category="product",
-            tags=["headphones", "anc", "bluetooth"],
-            price=100.0 + i * 50,
-            region=["us-east", "us-west"],
-            availability=0.99,
-            active=True,
-        ))
+        store.register_offering(
+            OfferingDescriptor(
+                offering_id=f"interop-off-product-{i}",
+                provider_id="interop-prov-product",
+                name=f"Headphone Model {i}",
+                description=f"Noise-canceling headphones model {i} with bluetooth",
+                category="product",
+                tags=["headphones", "anc", "bluetooth"],
+                price=100.0 + i * 50,
+                region=["us-east", "us-west"],
+                availability=0.99,
+                active=True,
+            )
+        )
 
     # Service offerings
-    store.register_offering(OfferingDescriptor(
-        offering_id="interop-off-service-1",
-        provider_id="interop-prov-service",
-        name="CRM Integration Service",
-        description="Salesforce CRM integration with analytics",
-        category="service",
-        tags=["crm", "salesforce", "integration"],
-        price=299.0,
-        region=["us-east"],
-        availability=0.999,
-        active=True,
-    ))
+    store.register_offering(
+        OfferingDescriptor(
+            offering_id="interop-off-service-1",
+            provider_id="interop-prov-service",
+            name="CRM Integration Service",
+            description="Salesforce CRM integration with analytics",
+            category="service",
+            tags=["crm", "salesforce", "integration"],
+            price=299.0,
+            region=["us-east"],
+            availability=0.999,
+            active=True,
+        )
+    )
 
     # Agent offerings
-    store.register_offering(OfferingDescriptor(
-        offering_id="interop-off-agent-1",
-        provider_id="interop-prov-agent",
-        name="GPT-4 Inference API",
-        description="Enterprise LLM inference for AI agents",
-        category="agent",
-        tags=["llm", "gpt4", "inference", "ai"],
-        price=0.01,
-        region=["us-east", "us-west"],
-        availability=0.997,
-        active=True,
-    ))
+    store.register_offering(
+        OfferingDescriptor(
+            offering_id="interop-off-agent-1",
+            provider_id="interop-prov-agent",
+            name="GPT-4 Inference API",
+            description="Enterprise LLM inference for AI agents",
+            category="agent",
+            tags=["llm", "gpt4", "inference", "ai"],
+            price=0.01,
+            region=["us-east", "us-west"],
+            availability=0.997,
+            active=True,
+        )
+    )
 
     return store
 
@@ -110,11 +121,20 @@ class TestEndToEndPipeline:
         result = run_discovery_pipeline(intent, store=populated_store)
         stages = result["pipeline"]["stages_executed"]
         expected_stages = [
-            "parse_request", "normalize_intent", "extract_constraints",
-            "retrieve_candidates", "deterministic_filtering", "semantic_matching",
-            "capability_validation", "policy_filtering", "ranking",
-            "explanation_generation", "federation_merge", "deduplication",
-            "audit_logging", "response_generation",
+            "parse_request",
+            "normalize_intent",
+            "extract_constraints",
+            "retrieve_candidates",
+            "deterministic_filtering",
+            "semantic_matching",
+            "capability_validation",
+            "policy_filtering",
+            "ranking",
+            "explanation_generation",
+            "federation_merge",
+            "deduplication",
+            "audit_logging",
+            "response_generation",
         ]
         for stage in expected_stages:
             assert stage in stages, f"Stage '{stage}' not executed"
@@ -179,13 +199,15 @@ class TestEndToEndPipeline:
             intent_text="headphones",
             category=Category.PRODUCT,
         )
-        federated = [{
-            "offering_id": "fed-offering-001",
-            "provider_id": "remote-provider-001",
-            "total_score": 0.75,
-            "score_breakdown": {},
-            "explanation": {"summary": "Federated result"},
-        }]
+        federated = [
+            {
+                "offering_id": "fed-offering-001",
+                "provider_id": "remote-provider-001",
+                "total_score": 0.75,
+                "score_breakdown": {},
+                "explanation": {"summary": "Federated result"},
+            }
+        ]
         result = run_discovery_pipeline(intent, store=populated_store, federated_results=federated)
         assert result["pipeline"]["federation_used"] is True
         fed_ids = [r["offering_id"] for r in result["results"] if r.get("_source") == "federated"]
