@@ -2,7 +2,18 @@
 
 ## What is Agent Discovery Protocol?
 
-The Agent Discovery Protocol (ADP) is an open protocol for **intent-driven discovery** of agents, services, products, data, compute resources, and APIs. It enables AI agents, applications, and humans to find the right provider for any capability using natural language.
+The Agent Discovery Protocol (ADP) is an open protocol for **intent-driven discovery** of agents, services, products, data, compute resources, and APIs. It accepts a structured intent from any caller — AI agent, application, or human — and returns a ranked set of matching providers resolved in real time.
+
+ADP is:
+
+- An **intent-driven discovery layer** — it resolves natural language capability requests to ranked provider matches in real time.
+- A **capability and offering indexing protocol** — providers register machine-readable descriptors; ADP indexes and resolves against them.
+
+ADP is not:
+
+- A **catalog** — it does not serve pre-built listings for human browsing.
+- A **registry** — it does not maintain a static directory of agents or services without discovery semantics.
+- An **execution layer** — it does not invoke, run, or manage capabilities after discovery.
 
 ## The Problem
 
@@ -10,6 +21,8 @@ As the number of AI agents, microservices, and digital products grows, discoveri
 - Static catalogs that require exact keyword matching
 - Search engines that return pages of irrelevant results
 - Manual API documentation browsing
+
+None of these approaches support structured intent, constraint filtering, or real-time resolution ranked by relevance, price, trust, and availability.
 
 ADP replaces these with a structured, intent-first discovery model.
 
