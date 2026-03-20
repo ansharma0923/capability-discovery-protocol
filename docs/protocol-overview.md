@@ -50,6 +50,53 @@ The protocol response includes:
 12. DiscoveryResponse returned
 ```
 
+## Multi-Plane Architecture
+
+ADP is one layer in a multi-plane agentic stack. Understanding its position clarifies its scope and boundaries.
+
+```
+SIP  (Signal / Instruction Plane)   — intent originates here
+ │
+ADP  (Agent Discovery Protocol)     — intent-driven discovery layer
+ │
+A2A  (Agent-to-Agent)               — negotiation and contracting
+ │
+UCP  (Unified Commerce Protocol)    — transaction and fulfillment
+ │
+AP2  (Agentic Payment Protocol)     — payment and settlement
+```
+
+### Flow: Intent → Discovery → Negotiation → Transaction
+
+```
+Intent
+  │  Caller forms a capability need (natural language + constraints).
+  ▼
+Discovery (ADP)
+  │  ADP resolves the intent against indexed providers and offerings.
+  │  Returns a ranked DiscoveryResponse scored on relevance, price,
+  │  trust, and availability.
+  ▼
+Negotiation (A2A)
+  │  Caller and selected provider negotiate terms using the
+  │  DiscoveryResponse as the starting point.
+  ▼
+Transaction (UCP / AP2)
+     Agreed capability is executed, fulfilled, and settled.
+```
+
+ADP does not participate in negotiation, execution, or payment. It produces discovery output only — a ranked list of providers and offerings that match the expressed intent.
+
+### Scope Boundaries
+
+| Layer | Responsibility | ADP's role |
+|---|---|---|
+| SIP | Signal formation and instruction routing | Upstream of ADP — provides the intent |
+| **ADP** | **Intent-driven discovery and ranking** | **This layer** |
+| A2A | Agent-to-agent negotiation and contracting | Downstream — consumes ADP output |
+| UCP | Transaction and fulfillment | Downstream — post-discovery |
+| AP2 | Payment and settlement | Downstream — post-discovery |
+
 ## Versioning
 
 ADP uses semantic versioning. The current protocol version is `0.1.0`.
