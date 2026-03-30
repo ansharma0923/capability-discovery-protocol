@@ -9,4 +9,4 @@ schema/ @ansharma0923
 protocol-vectors/ @ansharma0923
 
 # Core protocol implementation
-adp/ @ansharma0923
+cdp/ @ansharma0923

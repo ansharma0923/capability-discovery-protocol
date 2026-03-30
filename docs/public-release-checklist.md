@@ -23,7 +23,7 @@ Use this checklist before making the repository public or tagging a release.
 
 ## Code Quality
 
-- [x] `ruff check adp/ tests/ examples/` passes with no errors
+- [x] `ruff check cdp/ tests/ examples/` passes with no errors
 - [x] All unit tests pass: `pytest tests/unit/ -v`
 - [x] All functional tests pass: `pytest tests/functional/ -v`
 - [x] Schema validation passes: `pytest tests/schema_validation/ -v`

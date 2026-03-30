@@ -7,13 +7,13 @@ test:
 	pytest tests/ -v
 
 run-api:
-	uvicorn adp.main:app --reload --host 0.0.0.0 --port 8000
+	uvicorn cdp.main:app --reload --host 0.0.0.0 --port 8000
 
 lint:
-	ruff check adp/ tests/ examples/
+	ruff check cdp/ tests/ examples/
 
 format:
-	ruff format adp/ tests/ examples/
+	ruff format cdp/ tests/ examples/
 
 validate-schema:
 	pytest tests/schema_validation/ tests/protocol_vectors/ -v

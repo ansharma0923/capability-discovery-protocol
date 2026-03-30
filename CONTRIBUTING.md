@@ -76,7 +76,7 @@ ruff format cdp/ tests/
 2. Create a feature branch: `git checkout -b feature/my-feature`
 3. Make your changes with tests
 4. Ensure all tests pass: `pytest tests/ -v`
-5. Run linting: `ruff check adp/ tests/`
+5. Run linting: `ruff check cdp/ tests/`
 6. Submit a PR using the [PR template](.github/PULL_REQUEST_TEMPLATE.md)
 
 ## Coding Standards
