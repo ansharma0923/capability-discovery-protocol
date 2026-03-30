@@ -27,7 +27,8 @@ When `include_federation: true` is set in preferences, or when using the `/feder
 Configure federation nodes at startup:
 
 ```python
-from adp.federation.client import configure_federation
+from cdp.federation.client import configure_federation
+
 configure_federation(["https://node2.cdp.example.com", "https://node3.cdp.example.com"])
 ```
 

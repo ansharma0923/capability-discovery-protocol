@@ -5,11 +5,11 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from adp.federation.client import FederationClient, LocalFederationSimulator
-from adp.intent.models import Category, Constraints, DiscoveryIntent, Preferences
-from adp.registry.models import OfferingDescriptor, ProviderDescriptor, TrustLevel
-from adp.registry.store import RegistryStore
-from adp.service.discovery import run_discovery_pipeline
+from cdp.federation.client import FederationClient, LocalFederationSimulator
+from cdp.intent.models import Category, Constraints, DiscoveryIntent, Preferences
+from cdp.registry.models import OfferingDescriptor, ProviderDescriptor, TrustLevel
+from cdp.registry.store import RegistryStore
+from cdp.service.discovery import run_discovery_pipeline
 
 
 def build_node1_registry() -> tuple:

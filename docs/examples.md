@@ -6,8 +6,8 @@ See the `examples/` directory for working Python scripts.
 
 ```python
 # examples/product_discovery.py
-from adp.intent.models import DiscoveryIntent, Category, Constraints
-from adp.service.discovery import run_discovery_pipeline
+from cdp.intent.models import DiscoveryIntent, Category, Constraints
+from cdp.service.discovery import run_discovery_pipeline
 
 intent = DiscoveryIntent(
     intent_text="I need noise-canceling headphones under $300 for remote work",
@@ -32,7 +32,7 @@ intent = DiscoveryIntent(
 ## Cost-Optimized Search
 
 ```python
-from adp.intent.models import Preferences, RankingProfile
+from cdp.intent.models import Preferences, RankingProfile
 
 intent = DiscoveryIntent(
     intent_text="cheapest GPU compute available",

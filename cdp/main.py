@@ -17,7 +17,7 @@ logging.basicConfig(
     format="%(asctime)s [%(name)s] %(levelname)s: %(message)s",
 )
 
-_log = logging.getLogger("adp")
+_log = logging.getLogger("cdp")
 
 
 @asynccontextmanager

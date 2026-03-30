@@ -2,10 +2,10 @@
 
 import pytest
 
-from adp.intent.models import Category, Constraints, DiscoveryIntent, Preferences
-from adp.registry.models import OfferingDescriptor, ProviderDescriptor, TrustLevel
-from adp.registry.store import RegistryStore
-from adp.service.discovery import run_discovery_pipeline
+from cdp.intent.models import Category, Constraints, DiscoveryIntent, Preferences
+from cdp.registry.models import OfferingDescriptor, ProviderDescriptor, TrustLevel
+from cdp.registry.store import RegistryStore
+from cdp.service.discovery import run_discovery_pipeline
 
 
 @pytest.fixture

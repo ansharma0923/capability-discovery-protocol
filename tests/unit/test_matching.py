@@ -1,9 +1,9 @@
 """Tests for semantic matching."""
 import pytest
 
-from adp.intent.models import Category, DiscoveryIntent
-from adp.matching.semantic import rank_by_semantic, semantic_score
-from adp.registry.models import OfferingDescriptor
+from cdp.intent.models import Category, DiscoveryIntent
+from cdp.matching.semantic import rank_by_semantic, semantic_score
+from cdp.registry.models import OfferingDescriptor
 
 
 @pytest.fixture

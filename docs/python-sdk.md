@@ -30,10 +30,10 @@ Or add `agent-discovery-protocol` to your project dependencies once published to
 ## Quick Example
 
 ```python
-from adp.intent.models import DiscoveryIntent, Category, Constraints, Preferences
-from adp.registry.models import ProviderDescriptor, OfferingDescriptor, TrustLevel
-from adp.registry.store import RegistryStore
-from adp.service.discovery import run_discovery_pipeline
+from cdp.intent.models import DiscoveryIntent, Category, Constraints, Preferences
+from cdp.registry.models import ProviderDescriptor, OfferingDescriptor, TrustLevel
+from cdp.registry.store import RegistryStore
+from cdp.service.discovery import run_discovery_pipeline
 
 # 1. Create a registry
 store = RegistryStore()
@@ -174,21 +174,21 @@ class OfferingDescriptor(BaseModel):
 ## Registry Store
 
 ```python
-from adp.registry.store import RegistryStore
+from cdp.registry.store import RegistryStore
 
 store = RegistryStore()
 
 # Providers
-store.register_provider(provider)       # -> ProviderDescriptor
-store.get_provider(provider_id)         # -> Optional[ProviderDescriptor]
-store.list_providers()                  # -> List[ProviderDescriptor]
+store.register_provider(provider)  # -> ProviderDescriptor
+store.get_provider(provider_id)  # -> Optional[ProviderDescriptor]
+store.list_providers()  # -> List[ProviderDescriptor]
 store.update_provider(id, {"name": "New Name"})  # -> Optional[ProviderDescriptor]
 
 # Offerings
-store.register_offering(offering)       # -> OfferingDescriptor
-store.get_offering(offering_id)         # -> Optional[OfferingDescriptor]
+store.register_offering(offering)  # -> OfferingDescriptor
+store.get_offering(offering_id)  # -> Optional[OfferingDescriptor]
 store.list_offerings(provider_id=None)  # -> List[OfferingDescriptor]
-store.update_offering(id, {"price": 199.99})     # -> Optional[OfferingDescriptor]
+store.update_offering(id, {"price": 199.99})  # -> Optional[OfferingDescriptor]
 ```
 
 TTL is enforced on every read: expired entries return `None` and are removed.
@@ -198,7 +198,8 @@ TTL is enforced on every read: expired entries return `None` and are removed.
 The API server uses a process-wide singleton:
 
 ```python
-from adp.registry.store import get_store
+from cdp.registry.store import get_store
+
 store = get_store()
 ```
 
@@ -207,12 +208,12 @@ store = get_store()
 ## Discovery Pipeline
 
 ```python
-from adp.service.discovery import run_discovery_pipeline
+from cdp.service.discovery import run_discovery_pipeline
 
 response = run_discovery_pipeline(
-    intent,                          # DiscoveryIntent
-    store=store,                     # optional RegistryStore (uses global if None)
-    federated_results=None,          # optional pre-fetched federated results
+    intent,  # DiscoveryIntent
+    store=store,  # optional RegistryStore (uses global if None)
+    federated_results=None,  # optional pre-fetched federated results
 )
 ```
 
@@ -265,7 +266,7 @@ response = run_discovery_pipeline(
 ### Real Remote Nodes
 
 ```python
-from adp.federation.client import configure_federation, get_federation_client
+from cdp.federation.client import configure_federation, get_federation_client
 import asyncio
 
 configure_federation([
@@ -281,7 +282,7 @@ response = run_discovery_pipeline(intent, federated_results=federated_results)
 ### Local Simulation (Testing / Demos)
 
 ```python
-from adp.federation.client import FederationClient, LocalFederationSimulator
+from cdp.federation.client import FederationClient, LocalFederationSimulator
 
 sim = LocalFederationSimulator(
     node_url="https://node1.cdp.example.com",
@@ -302,8 +303,9 @@ federated_results = asyncio.run(client.federate(intent))
 Add custom filtering rules that run at stage 8 of the pipeline:
 
 ```python
-from adp.policy.engine import PolicyRule, PolicyEngine, get_policy_engine
-from adp.registry.models import OfferingDescriptor, ProviderDescriptor
+from cdp.policy.engine import PolicyRule, PolicyEngine, get_policy_engine
+from cdp.registry.models import OfferingDescriptor, ProviderDescriptor
+
 
 class SOC2RequiredPolicy(PolicyRule):
     name = "soc2_required"
@@ -313,8 +315,10 @@ class SOC2RequiredPolicy(PolicyRule):
             return False, "SOC2 certification required"
         return True, "SOC2 certified"
 
+
 # Replace the global engine
-import adp.policy.engine as eng
+import cdp.policy.engine as eng
+
 eng._engine = PolicyEngine(rules=[SOC2RequiredPolicy()])
 ```
 
@@ -323,7 +327,7 @@ eng._engine = PolicyEngine(rules=[SOC2RequiredPolicy()])
 ## Ranking Profiles
 
 ```python
-from adp.ranking.profiles import get_profile
+from cdp.ranking.profiles import get_profile
 
 profile = get_profile("cost_optimized")
 print(profile)
@@ -339,7 +343,7 @@ Available profiles: `default`, `cost_optimized`, `latency_optimized`, `trust_opt
 If you prefer HTTP, start the server:
 
 ```bash
-uvicorn adp.main:app --reload
+uvicorn cdp.main:app --reload
 ```
 
 Key endpoints:

@@ -3,8 +3,8 @@ import time
 
 import pytest
 
-from adp.registry.models import OfferingDescriptor, ProviderDescriptor, TrustLevel
-from adp.registry.store import RegistryStore
+from cdp.registry.models import OfferingDescriptor, ProviderDescriptor, TrustLevel
+from cdp.registry.store import RegistryStore
 
 
 @pytest.fixture

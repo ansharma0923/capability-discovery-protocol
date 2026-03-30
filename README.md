@@ -107,7 +107,7 @@ pip install -e ".[dev]"
 ### Run Server
 
 ```bash
-uvicorn adp.main:app --reload --port 8000
+uvicorn cdp.main:app --reload --port 8000
 ```
 
 ### First Query

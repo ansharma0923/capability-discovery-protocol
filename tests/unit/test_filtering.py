@@ -1,7 +1,7 @@
 """Tests for deterministic filtering."""
-from adp.intent.models import Category, Constraints, DiscoveryIntent
-from adp.matching.filter import apply_filters
-from adp.registry.models import OfferingDescriptor
+from cdp.intent.models import Category, Constraints, DiscoveryIntent
+from cdp.matching.filter import apply_filters
+from cdp.registry.models import OfferingDescriptor
 
 
 def make_offering(**kwargs) -> OfferingDescriptor:

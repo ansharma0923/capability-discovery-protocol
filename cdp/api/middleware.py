@@ -6,7 +6,7 @@ import uuid
 from fastapi import Request
 from starlette.middleware.base import BaseHTTPMiddleware
 
-logger = logging.getLogger("adp.api")
+logger = logging.getLogger("cdp.api")
 
 
 class RequestLoggingMiddleware(BaseHTTPMiddleware):

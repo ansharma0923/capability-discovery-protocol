@@ -184,34 +184,34 @@ class TestVectorParsability:
     """Test that vectors can be parsed by CDP Python models."""
 
     def test_intent_vector_parseable_by_model(self):
-        from adp.intent.models import DiscoveryIntent
+        from cdp.intent.models import DiscoveryIntent
         vector = load_vector("discovery_intent_v0.1.json")
         intent = DiscoveryIntent(**vector)
         assert intent.category.value == "product"
         assert intent.constraints.max_price == 300.0
 
     def test_provider_vector_parseable_by_model(self):
-        from adp.registry.models import ProviderDescriptor
+        from cdp.registry.models import ProviderDescriptor
         vector = load_vector("provider_descriptor_v0.1.json")
         provider = ProviderDescriptor(**vector)
         assert provider.trust_level.value == "verified"
 
     def test_offering_vector_parseable_by_model(self):
-        from adp.registry.models import OfferingDescriptor
+        from cdp.registry.models import OfferingDescriptor
         vector = load_vector("offering_descriptor_v0.1.json")
         offering = OfferingDescriptor(**vector)
         assert offering.category == "product"
         assert offering.active is True
 
     def test_service_intent_vector_parseable_by_model(self):
-        from adp.intent.models import DiscoveryIntent
+        from cdp.intent.models import DiscoveryIntent
         vector = load_vector("discovery_intent_service_v0.1.json")
         intent = DiscoveryIntent(**vector)
         assert intent.category.value == "service"
         assert "SOC2" in intent.constraints.compliance
 
     def test_agent_intent_vector_parseable_by_model(self):
-        from adp.intent.models import DiscoveryIntent
+        from cdp.intent.models import DiscoveryIntent
         vector = load_vector("discovery_intent_agent_v0.1.json")
         intent = DiscoveryIntent(**vector)
         assert intent.category.value == "agent"

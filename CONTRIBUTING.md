@@ -58,7 +58,7 @@ pytest tests/interoperability/ -v
 ### Running the Server
 
 ```bash
-uvicorn adp.main:app --reload --host 0.0.0.0 --port 8000
+uvicorn cdp.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
 ### Code Style
@@ -66,8 +66,8 @@ uvicorn adp.main:app --reload --host 0.0.0.0 --port 8000
 We use [ruff](https://docs.astral.sh/ruff/) for linting and formatting:
 
 ```bash
-ruff check adp/ tests/
-ruff format adp/ tests/
+ruff check cdp/ tests/
+ruff format cdp/ tests/
 ```
 
 ## Pull Request Process

@@ -2,7 +2,7 @@
 import pytest
 from fastapi.testclient import TestClient
 
-from adp.main import app
+from cdp.main import app
 
 
 @pytest.fixture
