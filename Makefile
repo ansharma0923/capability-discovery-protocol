@@ -1,4 +1,4 @@
-.PHONY: install test run-api lint format clean validate-schema run-examples
+.PHONY: install test run-api lint format clean validate-schema run-examples ci
 
 install:
 	pip install -e ".[dev]"
@@ -24,6 +24,8 @@ run-examples:
 	python examples/agent_discovery.py
 	python examples/federation_demo.py
 	python examples/policy_demo.py
+
+ci: install lint test validate-schema
 
 clean:
 	find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true

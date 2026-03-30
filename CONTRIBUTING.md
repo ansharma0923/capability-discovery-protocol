@@ -36,7 +36,7 @@ Protocol changes require a [Protocol Change Proposal](.github/ISSUE_TEMPLATE/pro
 ### Setup
 
 ```bash
-git clone https://github.com/your-org/agent-discovery-protocol.git
+git clone https://github.com/ansharma0923/agent-discovery-protocol.git
 cd agent-discovery-protocol
 pip install -e ".[dev]"
 ```

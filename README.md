@@ -1,6 +1,8 @@
 # Agent Discovery Protocol (ADP)
 
-![Python](https://img.shields.io/badge/python-3.11%2B-blue) ![License](https://img.shields.io/badge/license-Apache%202.0-green) ![Version](https://img.shields.io/badge/version-0.1.0-orange)
+![Build](https://github.com/ansharma0923/agent-discovery-protocol/actions/workflows/ci.yml/badge.svg) ![Python](https://img.shields.io/badge/python-3.11%2B-blue) ![License](https://img.shields.io/badge/license-Apache%202.0-green) ![Version](https://img.shields.io/badge/version-0.1.0-orange)
+
+> **Status**: v0.1.0 — early reference implementation. APIs and wire format are subject to change before v1.0.
 
 **Intent-driven discovery of agents, services, products, data, and APIs.**
 

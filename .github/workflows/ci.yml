@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+    branches: ["main", "master"]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: pip install -e ".[dev]"
+
+      - name: Lint
+        run: ruff check adp/ tests/ examples/
+
+      - name: Unit tests
+        run: pytest tests/unit/ -v
+
+      - name: Functional tests
+        run: pytest tests/functional/ -v
+
+      - name: Schema validation
+        run: pytest tests/schema_validation/ -v
+
+      - name: Protocol vector validation
+        run: pytest tests/protocol_vectors/ -v
+
+      - name: Interoperability tests
+        run: pytest tests/interoperability/ -v
