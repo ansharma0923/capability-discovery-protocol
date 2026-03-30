@@ -9,6 +9,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.1.1] — 2026-03-30
+
+### Changed
+- Finalized rename from ADP/CFP to CDP (Capability Discovery Protocol)
+- Standardized naming across repository (README, docs, schemas, examples)
+- Updated project positioning to capability-centric discovery
+- Added and refined architecture diagrams (indexed, federated, hybrid, agent-less flows)
+- Expanded documentation for agent-less execution mode
+- Clarified Provider → Skill → Offering model across docs and examples
+
+### Fixed
+- Corrected Makefile and tooling references after package rename (adp → cdp)
+- Updated lint, format, and validation commands to use cdp/
+- Ensured CI workflow uses correct paths
+- Removed stale references to adp/ in code and documentation
+
+### Documentation
+- Updated README to reflect CDP naming and positioning
+- Added docs/no-agent-mode.md
+- Renamed docs/adp-context.md → docs/cdp-context.md
+- Improved protocol overview and architecture sections
+- Added clear explanation of CDP vs ADP vs CFP evolution
+
+### Notes
+- This is a stabilization and consistency release after the CDP transition
+- No functional breaking changes to discovery behavior
+- Python package now uses `cdp` instead of `adp`
+
+---
+
 ## [0.1.0] — 2024-01-15
 
 Initial public release of the Capability Discovery Protocol reference implementation.
@@ -49,4 +79,5 @@ Initial public release of the Capability Discovery Protocol reference implementa
 
 ---
 
+[0.1.1]: https://github.com/ansharma0923/capability-discovery-protocol/releases/tag/v0.1.1
 [0.1.0]: https://github.com/ansharma0923/agent-discovery-protocol/releases/tag/v0.1.0
