@@ -1,5 +1,31 @@
 # Architecture
 
+## CDP Architecture Overview
+
+```mermaid
+flowchart TD
+    User["User / Application"]
+    SIP["SIP (Intent Layer)"]
+    CDP["CDP (Capability Discovery Protocol)"]
+    Local["Local Capability Index"]
+    Remote["Partner CDP Nodes"]
+    Merge["Merge + Deduplicate + Re-rank"]
+    Result["Ranked Discovery Results"]
+    Exec["Execution Layer"]
+
+    User --> SIP
+    SIP --> CDP
+
+    CDP --> Local
+    CDP --> Remote
+
+    Local --> Merge
+    Remote --> Merge
+
+    Merge --> Result
+    Result --> Exec
+```
+
 ## System Components
 
 ```

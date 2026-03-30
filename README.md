@@ -155,7 +155,7 @@ curl -X POST http://localhost:8000/discover \
 ## Repository Structure
 
 ```
-├── adp/              # Python implementation (package name retained for compatibility)
+├── cdp/              # Python implementation
 │   ├── intent/       # Intent parsing and models
 │   ├── registry/     # Provider and offering registry
 │   ├── matching/     # Filter, semantic, validator
