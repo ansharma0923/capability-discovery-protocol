@@ -6,8 +6,6 @@
 
 **Intent-driven discovery layer for capabilities, skills, APIs, services, workflows, and agents.**
 
-> **Naming note:** CDP (Capability Discovery Protocol), previously referred to in earlier drafts as CFP (Capability Fabric Protocol), is the capability-centric evolution of the original ADP (Agent Discovery Protocol) work. The Python reference implementation retains the `adp` package name for backward compatibility.
-
 CDP is a capability discovery plane for agentic and non-agentic systems. It solves the problem of how AI agents, applications, and humans can discover the right provider for any capability — using natural language intent rather than rigid query syntax.
 
 ## Key Features
