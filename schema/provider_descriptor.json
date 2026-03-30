@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://adp.protocol/schema/provider_descriptor.json",
   "title": "ProviderDescriptor",
-  "description": "Describes a provider of agents, services, or products in the ADP registry",
+  "description": "Describes a provider of agents, services, or products in the CDP registry",
   "type": "object",
   "version": "0.1.0",
   "required": ["provider_id", "version", "name", "description", "categories", "regions", "registered_at"],

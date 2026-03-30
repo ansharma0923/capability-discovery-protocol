@@ -150,5 +150,5 @@ class TestDiscoverEndpoint:
         assert response.status_code == 200
         data = response.json()
         assert data["status"] == "healthy"
-        assert data["protocol"] == "ADP"
+        assert data["protocol"] == "CDP"
         assert "registry" in data

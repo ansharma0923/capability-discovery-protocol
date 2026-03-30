@@ -1,4 +1,4 @@
-# Public Release Checklist — ADP v0.1.0
+# Public Release Checklist — CDP v0.1.0
 
 Use this checklist before making the repository public or tagging a release.
 

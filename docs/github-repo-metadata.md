@@ -12,7 +12,7 @@ Intent-driven discovery protocol for AI agents, services, products, data, and AP
 
 ## Short Tagline
 
-> ADP: resolve natural language intent to a ranked set of providers — the discovery layer for agentic systems.
+> CDP: resolve natural language intent to a ranked set of providers — the discovery layer for agentic systems.
 
 ## Topics
 

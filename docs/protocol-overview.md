@@ -4,7 +4,7 @@
 
 ### DiscoveryIntent
 
-A `DiscoveryIntent` is the primary input to ADP. It encapsulates:
+A `DiscoveryIntent` is the primary input to CDP. It encapsulates:
 - **intent_text**: Natural language description of what is needed
 - **category**: One of `product`, `service`, `agent`, `data`, `compute`, `api`
 - **constraints**: Hard constraints (price, region, latency, compliance, availability)
@@ -37,7 +37,7 @@ The protocol response includes:
 
 ```
 1. Client sends POST /discover with DiscoveryIntent
-2. ADP normalizes the intent
+2. CDP normalizes the intent
 3. Registry is queried for matching offerings
 4. Deterministic filters applied (price, region, compliance, etc.)
 5. Semantic matching scores each candidate
@@ -52,12 +52,12 @@ The protocol response includes:
 
 ## Multi-Plane Architecture
 
-ADP is one layer in a multi-plane agentic stack. Understanding its position clarifies its scope and boundaries.
+CDP is one layer in a multi-plane agentic stack. Understanding its position clarifies its scope and boundaries.
 
 ```
 SIP  (Signal / Instruction Plane)   — intent originates here
  │
-ADP  (Agent Discovery Protocol)     — intent-driven discovery layer
+CDP  (Capability Discovery Protocol)     — intent-driven discovery layer
  │
 A2A  (Agent-to-Agent)               — negotiation and contracting
  │
@@ -72,8 +72,8 @@ AP2  (Agentic Payment Protocol)     — payment and settlement
 Intent
   │  Caller forms a capability need (natural language + constraints).
   ▼
-Discovery (ADP)
-  │  ADP resolves the intent against indexed providers and offerings.
+Discovery (CDP)
+  │  CDP resolves the intent against indexed providers and offerings.
   │  Returns a ranked DiscoveryResponse scored on relevance, price,
   │  trust, and availability.
   ▼
@@ -85,19 +85,19 @@ Transaction (UCP / AP2)
      Agreed capability is executed, fulfilled, and settled.
 ```
 
-ADP does not participate in negotiation, execution, or payment. It produces discovery output only — a ranked list of providers and offerings that match the expressed intent.
+CDP does not participate in negotiation, execution, or payment. It produces discovery output only — a ranked list of providers and offerings that match the expressed intent.
 
 ### Scope Boundaries
 
-| Layer | Responsibility | ADP's role |
+| Layer | Responsibility | CDP's role |
 |---|---|---|
-| SIP | Signal formation and instruction routing | Upstream of ADP — provides the intent |
-| **ADP** | **Intent-driven discovery and ranking** | **This layer** |
-| A2A | Agent-to-agent negotiation and contracting | Downstream — consumes ADP output |
+| SIP | Signal formation and instruction routing | Upstream of CDP — provides the intent |
+| **CDP** | **Intent-driven discovery and ranking** | **This layer** |
+| A2A | Agent-to-agent negotiation and contracting | Downstream — consumes CDP output |
 | UCP | Transaction and fulfillment | Downstream — post-discovery |
 | AP2 | Payment and settlement | Downstream — post-discovery |
 
 ## Versioning
 
-ADP uses semantic versioning. The current protocol version is `0.1.0`.
+CDP uses semantic versioning. The current protocol version is `0.1.0`.
 All messages include a `version` field.

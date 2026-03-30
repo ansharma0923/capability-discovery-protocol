@@ -20,7 +20,7 @@ What you expected to happen.
 What actually happened.
 
 ## Environment
-- ADP Version:
+- CDP Version:
 - Python Version:
 - OS:
 

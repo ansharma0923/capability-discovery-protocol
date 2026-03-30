@@ -1,10 +1,10 @@
-# ADP Protocol Vectors
+# CDP Protocol Vectors
 
-Protocol vectors are canonical test fixtures that validate ADP implementations for correctness and interoperability.
+Protocol vectors are canonical test fixtures that validate CDP implementations for correctness and interoperability.
 
 ## What Are Protocol Vectors?
 
-Protocol vectors are reference JSON documents that serve as ground-truth examples of valid ADP messages. Any conformant implementation MUST accept these vectors without errors.
+Protocol vectors are reference JSON documents that serve as ground-truth examples of valid CDP messages. Any conformant implementation MUST accept these vectors without errors.
 
 ## Vector Files
 

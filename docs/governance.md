@@ -2,7 +2,7 @@
 
 ## Project Structure
 
-ADP is an open protocol governed by its contributors under the Apache 2.0 license.
+CDP is an open protocol governed by its contributors under the Apache 2.0 license.
 
 ## Decision Making
 

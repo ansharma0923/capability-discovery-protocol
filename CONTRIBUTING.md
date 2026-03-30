@@ -1,13 +1,13 @@
-# Contributing to Agent Discovery Protocol
+# Contributing to CDP — Capability Discovery Protocol
 
-Thank you for your interest in contributing to ADP! This document provides guidelines for contributing to the project.
+Thank you for your interest in contributing to CDP! This document provides guidelines for contributing to the project.
 
 ## How to Contribute
 
 ### Reporting Bugs
 
 Use the [bug report template](.github/ISSUE_TEMPLATE/bug_report.md) to file issues. Include:
-- ADP version, Python version, and OS
+- CDP version, Python version, and OS
 - Steps to reproduce
 - Expected vs actual behavior
 

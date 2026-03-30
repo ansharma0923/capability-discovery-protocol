@@ -1,6 +1,6 @@
 ---
 name: Protocol Change Proposal
-about: Propose a change to the ADP protocol specification
+about: Propose a change to the CDP protocol specification
 title: '[PROTOCOL] '
 labels: protocol-change
 assignees: ''

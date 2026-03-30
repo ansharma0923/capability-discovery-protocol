@@ -148,7 +148,7 @@ def health_check(store: RegistryStore = Depends(get_registry)) -> Dict[str, Any]
     return {
         "status": "healthy",
         "version": "0.1.0",
-        "protocol": "ADP",
+        "protocol": "CDP",
         "registry": {
             "providers": len(providers),
             "offerings": len(offerings),

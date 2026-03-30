@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea for ADP
+about: Suggest an idea for CDP
 title: '[FEATURE] '
 labels: enhancement
 assignees: ''

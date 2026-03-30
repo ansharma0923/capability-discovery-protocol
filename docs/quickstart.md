@@ -1,6 +1,6 @@
 # Quickstart
 
-Get up and running with the Agent Discovery Protocol (ADP) in under 5 minutes.
+Get up and running with the Capability Discovery Protocol (CDP) in under 5 minutes.
 
 ## Prerequisites
 
@@ -112,6 +112,6 @@ make validate-schema
 ## Next Steps
 
 - Read [docs/examples-walkthrough.md](examples-walkthrough.md) for a deep dive into each example
-- Read [docs/python-sdk.md](python-sdk.md) to use ADP as a Python library
+- Read [docs/python-sdk.md](python-sdk.md) to use CDP as a Python library
 - Read [docs/architecture.md](architecture.md) for the full system design
 - Read [docs/adp-wire-spec-v0.1.md](adp-wire-spec-v0.1.md) for the wire protocol spec

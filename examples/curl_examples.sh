@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# ADP curl examples - assumes server running on localhost:8000
+# CDP curl examples - assumes server running on localhost:8000
 
 BASE_URL="http://localhost:8000"
 
-echo "=== ADP curl Examples ==="
+echo "=== CDP curl Examples ==="
 echo ""
 
 # Health check

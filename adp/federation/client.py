@@ -1,4 +1,4 @@
-"""Federation client for querying remote ADP nodes."""
+"""Federation client for querying remote CDP nodes."""
 import asyncio
 from typing import Any, Dict, List, Optional
 
@@ -10,7 +10,7 @@ from ..registry.models import OfferingDescriptor, ProviderDescriptor
 
 class LocalFederationSimulator:
     """
-    Simulates a remote ADP federation node for local testing and demos.
+    Simulates a remote CDP federation node for local testing and demos.
 
     Each simulated node has its own in-memory registry of providers and
     offerings.  When queried, the node runs the same deterministic

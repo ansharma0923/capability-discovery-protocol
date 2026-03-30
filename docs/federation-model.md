@@ -2,13 +2,13 @@
 
 ## Overview
 
-ADP federation allows a node to query other ADP nodes and merge their results into a single response.
+CDP federation allows a node to query other CDP nodes and merge their results into a single response.
 
 ## Architecture
 
 ```
-Client → ADP Node A → ADP Node B
-                    → ADP Node C
+Client → CDP Node A → CDP Node B
+                    → CDP Node C
                     ← Merge results
          ← Combined response
 ```
@@ -28,7 +28,7 @@ Configure federation nodes at startup:
 
 ```python
 from adp.federation.client import configure_federation
-configure_federation(["https://node2.adp.example.com", "https://node3.adp.example.com"])
+configure_federation(["https://node2.cdp.example.com", "https://node3.cdp.example.com"])
 ```
 
 ## Deduplication

@@ -85,10 +85,10 @@ The latency-optimized profile applies higher weight to the latency component of 
 
 ## 4. Federation Demo (`federation_demo.py`)
 
-Demonstrates multi-node ADP federation using a local in-process simulation.
+Demonstrates multi-node CDP federation using a local in-process simulation.
 
 **Key concepts:**
-- `LocalFederationSimulator` — simulates a remote ADP node without network I/O
+- `LocalFederationSimulator` — simulates a remote CDP node without network I/O
 - `FederationClient.register_simulator()` — registers a simulator for a node URL
 - Remote node results are tagged `_source = "federated"` and `_node = <url>`
 - Results from all nodes are merged, deduplicated (by `offering_id`), and re-ranked
@@ -102,12 +102,12 @@ python examples/federation_demo.py
 **Expected output:**
 ```
 Configured 2 federation nodes (local simulation):
-  - https://node1.adp.example.com
-  - https://node2.adp.example.com
+  - https://node1.cdp.example.com
+  - https://node2.cdp.example.com
 
 Results from remote nodes: 2
-  [https://node1.adp.example.com] fed-off-node1-001 score=0.68
-  [https://node2.adp.example.com] fed-off-node2-001 score=0.68
+  [https://node1.cdp.example.com] fed-off-node1-001 score=0.68
+  [https://node2.cdp.example.com] fed-off-node2-001 score=0.68
 
 Total results after merge+dedup+rerank: 3
 Federation used: True

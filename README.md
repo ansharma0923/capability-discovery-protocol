@@ -1,73 +1,79 @@
-# Agent Discovery Protocol (ADP)
+# CDP — Capability Discovery Protocol
 
 ![Build](https://github.com/ansharma0923/agent-discovery-protocol/actions/workflows/ci.yml/badge.svg) ![Python](https://img.shields.io/badge/python-3.11%2B-blue) ![License](https://img.shields.io/badge/license-Apache%202.0-green) ![Version](https://img.shields.io/badge/version-0.1.0-orange)
 
 > **Status**: v0.1.0 — early reference implementation. APIs and wire format are subject to change before v1.0.
 
-**Intent-driven discovery of agents, services, products, data, and APIs.**
+**Intent-driven discovery layer for capabilities, skills, APIs, services, workflows, and agents.**
 
-ADP solves the problem of how AI agents, applications, and humans can discover the right provider for any capability — using natural language intent rather than rigid query syntax.
+> **Naming note:** CDP (Capability Discovery Protocol), previously referred to in earlier drafts as CFP (Capability Fabric Protocol), is the capability-centric evolution of the original ADP (Agent Discovery Protocol) work. The Python reference implementation retains the `adp` package name for backward compatibility.
+
+CDP is a capability discovery plane for agentic and non-agentic systems. It solves the problem of how AI agents, applications, and humans can discover the right provider for any capability — using natural language intent rather than rigid query syntax.
 
 ## Key Features
 
 - 🎯 **Intent-driven**: Natural language discovery requests
 - 🔍 **14-stage pipeline**: Parse → Filter → Semantic Match → Validate → Rank → Audit → Respond
 - 🏆 **Explainable ranking**: Score breakdowns with human-readable explanations
-- 🌐 **Federation**: Query distributed ADP nodes
+- 🌐 **Federation**: Query distributed CDP nodes
 - 🛡️ **Policy engine**: Pluggable provider trust and compliance rules
 - 📊 **Audit logging**: Full observability for every discovery
 - ⚡ **6 categories**: product, service, agent, data, compute, api
 
-## Agent Discovery Plane (ADP) Context
+## Capability Discovery Plane (CDP) Context
 
 ### The Gap
 
-Current agent ecosystems lack a structured layer for capability discovery. Agents can invoke tools and call APIs, but there is no standardized mechanism for an agent to express *what it needs* and receive a ranked, policy-filtered set of providers capable of fulfilling that need.
+Current agentic ecosystems lack a structured layer for capability discovery. Agents can invoke tools and call APIs, but there is no standardized mechanism for an agent to express *what it needs* and receive a ranked, policy-filtered set of providers capable of fulfilling that need.
 
 Agent registries list agents. Merchant catalogs list products. Neither resolves intent to the right provider in real time.
 
-### Role of ADP in the Stack
+### Role of CDP in the Stack
 
-ADP operates as the **discovery plane** in a multi-layer agentic stack:
+CDP operates as the **capability discovery plane** in a multi-layer agentic stack:
 
 ```
-SIP  (Signal / Instruction Plane)   — intent originates here
+SIP  (Signal / Instruction Plane)    — intent originates here
  │
-ADP  (Agent Discovery Protocol)     — intent-driven discovery layer
+CDP  (Capability Discovery Protocol) — capability discovery plane
  │
-A2A  (Agent-to-Agent)               — negotiation and contracting
+A2A  (Agent-to-Agent)                — negotiation and contracting
  │
-UCP  (Unified Commerce Protocol)    — transaction and fulfillment
+UCP  (Unified Commerce Protocol)     — transaction and fulfillment
  │
-AP2  (Agentic Payment Protocol)     — payment and settlement
+AP2  (Agentic Payment Protocol)      — payment and settlement
 ```
 
-ADP sits between intent formation and negotiation. It does not execute tasks, manage payments, or handle post-discovery communication. Its sole function is to resolve a structured intent into a ranked set of matching providers and offerings.
+CDP sits between intent formation and negotiation. It does not execute tasks, manage payments, validate intent, enforce policy, generate execution plans, or handle post-discovery communication. Its sole function is to resolve a structured intent into a ranked set of matching providers and offerings — answering:
+
+- **What capabilities exist?**
+- **Which ones match?**
+- **Which ones are best?**
 
 ### Interaction Flow
 
 ```
-Intent → Discovery (ADP) → Negotiation → Transaction
+Intent → Discovery (CDP) → Negotiation → Transaction
 ```
 
 1. **Intent**: A caller expresses a capability need in natural language with optional structured constraints.
-2. **Discovery**: ADP indexes capabilities and offerings, resolves the intent against registered providers, and returns a ranked result set scored on relevance, price, trust, and availability.
+2. **Discovery**: CDP indexes capabilities and offerings, resolves the intent against registered providers, and returns a ranked result set scored on relevance, price, trust, and availability.
 3. **Negotiation**: The selected provider and caller negotiate terms (handled at the A2A layer).
 4. **Transaction**: The agreed capability is executed and settled (handled at UCP/AP2 layers).
 
-### How ADP Differs
+### How CDP Differs
 
 | Concept | Description |
 |---|---|
 | **Agent registry** | A static list of agents and their metadata. Does not resolve intent or rank results. |
 | **Merchant catalog** | A product listing optimized for human browsing. Does not support structured constraints or real-time resolution. |
-| **ADP** | An intent-driven discovery layer that resolves natural language capability requests against indexed providers in real time, ranked by relevance, price, trust, and availability. |
+| **CDP** | A capability discovery plane that resolves natural language capability requests against indexed providers in real time, ranked by relevance, price, trust, and availability. |
 
 ### Design Principle
 
-ADP moves the ecosystem from **static catalog lookup** to **intent-driven discovery**: providers index their capabilities and offerings; callers express intent; ADP resolves and ranks matches at request time.
+CDP moves the ecosystem from **static catalog lookup** to **intent-driven capability discovery**: providers index their capabilities and offerings; callers express intent; CDP resolves and ranks matches at request time.
 
-See [docs/adp-context.md](docs/adp-context.md) for the full protocol context document.
+See [docs/cdp-context.md](docs/cdp-context.md) for the full protocol context document.
 
 ## Architecture
 
@@ -151,7 +157,7 @@ curl -X POST http://localhost:8000/discover \
 ## Repository Structure
 
 ```
-├── adp/              # Python implementation
+├── adp/              # Python implementation (package name retained for compatibility)
 │   ├── intent/       # Intent parsing and models
 │   ├── registry/     # Provider and offering registry
 │   ├── matching/     # Filter, semantic, validator
