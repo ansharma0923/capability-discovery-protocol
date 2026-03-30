@@ -21,7 +21,7 @@ def run_discovery_pipeline(
     federated_results: Optional[List[Dict[str, Any]]] = None,
 ) -> Dict[str, Any]:
     """
-    Execute the 14-stage ADP discovery pipeline.
+    Execute the 14-stage CDP discovery pipeline.
 
     Stages:
     1.  parse_request

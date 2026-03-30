@@ -2,7 +2,7 @@
 
 ## Intent-Driven Discovery
 
-ADP uses a two-phase discovery model:
+CDP uses a two-phase discovery model:
 
 1. **Deterministic Filtering**: Hard constraints eliminate impossible candidates
 2. **Semantic Scoring**: Soft relevance scoring ranks remaining candidates

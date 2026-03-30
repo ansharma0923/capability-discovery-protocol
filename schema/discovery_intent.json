@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://adp.protocol/schema/discovery_intent.json",
   "title": "DiscoveryIntent",
-  "description": "An intent-driven discovery request in the ADP protocol",
+  "description": "An intent-driven discovery request in the CDP protocol",
   "type": "object",
   "version": "0.1.0",
   "required": ["intent_id", "version", "intent_text", "category", "created_at"],

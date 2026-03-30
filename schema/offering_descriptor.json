@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://adp.protocol/schema/offering_descriptor.json",
   "title": "OfferingDescriptor",
-  "description": "Describes a single offering (product, service, agent, data, compute, or API) in the ADP registry",
+  "description": "Describes a single offering (product, service, agent, data, compute, or API) in the CDP registry",
   "type": "object",
   "version": "0.1.0",
   "required": ["offering_id", "version", "provider_id", "name", "description", "category", "registered_at"],

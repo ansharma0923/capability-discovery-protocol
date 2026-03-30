@@ -1,6 +1,6 @@
 # Python SDK Reference
 
-The `adp` Python package provides the full Agent Discovery Protocol implementation. Use it directly in your applications without running the HTTP server.
+The `adp` Python package provides the full Capability Discovery Protocol implementation. Use it directly in your applications without running the HTTP server.
 
 ## Installation
 
@@ -269,8 +269,8 @@ from adp.federation.client import configure_federation, get_federation_client
 import asyncio
 
 configure_federation([
-    "https://node1.adp.example.com",
-    "https://node2.adp.example.com",
+    "https://node1.cdp.example.com",
+    "https://node2.cdp.example.com",
 ])
 
 client = get_federation_client()
@@ -284,12 +284,12 @@ response = run_discovery_pipeline(intent, federated_results=federated_results)
 from adp.federation.client import FederationClient, LocalFederationSimulator
 
 sim = LocalFederationSimulator(
-    node_url="https://node1.adp.example.com",
+    node_url="https://node1.cdp.example.com",
     offerings=[offering1, offering2],
     providers=[provider1],
 )
 
-client = FederationClient(nodes=["https://node1.adp.example.com"])
+client = FederationClient(nodes=["https://node1.cdp.example.com"])
 client.register_simulator(sim)
 
 federated_results = asyncio.run(client.federate(intent))

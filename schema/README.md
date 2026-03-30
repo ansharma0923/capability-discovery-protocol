@@ -1,6 +1,6 @@
-# ADP JSON Schemas
+# CDP JSON Schemas
 
-This directory contains the JSON Schema Draft 7 definitions for all ADP protocol data structures.
+This directory contains the JSON Schema Draft 7 definitions for all CDP protocol data structures.
 
 ## Schema Files
 

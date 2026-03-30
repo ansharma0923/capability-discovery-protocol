@@ -1,4 +1,4 @@
-# Known Limitations — ADP v0.1.0
+# Known Limitations — CDP v0.1.0
 
 This document describes the known limitations and design constraints of the v0.1.0 reference implementation. These are deliberate trade-offs for an early release and will be addressed in future versions.
 

@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://adp.protocol/schema/discovery_response.json",
   "title": "DiscoveryResponse",
-  "description": "The full API response from the ADP /discover endpoint",
+  "description": "The full API response from the CDP /discover endpoint",
   "type": "object",
   "version": "0.1.0",
   "required": ["intent_id", "version", "category", "total_candidates", "total_results", "results", "pipeline", "generated_at"],

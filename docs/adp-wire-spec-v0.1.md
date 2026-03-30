@@ -1,8 +1,8 @@
-# ADP Wire Specification v0.1
+# CDP Wire Specification v0.1
 
 ## Overview
 
-This document defines the wire format for ADP v0.1.0 messages.
+This document defines the wire format for CDP v0.1.0 messages.
 
 ## Transport
 
@@ -122,7 +122,7 @@ Register a new offering. The `provider_id` must reference a registered provider.
 {
   "status": "healthy",
   "version": "0.1.0",
-  "protocol": "ADP",
+  "protocol": "CDP",
   "registry": {
     "providers": 5,
     "offerings": 15

@@ -31,7 +31,7 @@ To report a security vulnerability, please email the maintainers directly or use
 | Fix development | 30 days |
 | Public disclosure | After fix is released |
 
-## Security Considerations for ADP Deployments
+## Security Considerations for CDP Deployments
 
 ### Registry Access
 

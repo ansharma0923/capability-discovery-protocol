@@ -1,4 +1,4 @@
-"""ADP FastAPI application entry point."""
+"""CDP FastAPI application entry point."""
 import json
 import logging
 from contextlib import asynccontextmanager
@@ -46,8 +46,8 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="Agent Discovery Protocol",
-    description="A protocol for intent-driven discovery of agents, services, and products.",
+    title="Capability Discovery Protocol",
+    description="Intent-driven discovery layer for capabilities, skills, APIs, services, workflows, and agents.",
     version="0.1.0",
     lifespan=lifespan,
 )

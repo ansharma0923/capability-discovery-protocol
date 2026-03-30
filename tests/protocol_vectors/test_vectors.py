@@ -181,7 +181,7 @@ class TestVectorFieldValues:
 
 
 class TestVectorParsability:
-    """Test that vectors can be parsed by ADP Python models."""
+    """Test that vectors can be parsed by CDP Python models."""
 
     def test_intent_vector_parseable_by_model(self):
         from adp.intent.models import DiscoveryIntent

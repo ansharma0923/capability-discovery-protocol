@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://adp.protocol/schema/federation_response.json",
   "title": "FederationResponse",
-  "description": "A federation response from a remote ADP node",
+  "description": "A federation response from a remote CDP node",
   "type": "object",
   "version": "0.1.0",
   "required": ["federation_id", "version", "responding_node", "results", "timestamp"],

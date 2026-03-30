@@ -1,4 +1,4 @@
-"""Federation demo example - local simulation of multi-node ADP federation."""
+"""Federation demo example - local simulation of multi-node CDP federation."""
 import asyncio
 import os
 import sys
@@ -109,13 +109,13 @@ def main():
     node2_offerings, node2_providers = build_node2_registry()
 
     sim_node1 = LocalFederationSimulator(
-        "https://node1.adp.example.com", node1_offerings, node1_providers
+        "https://node1.cdp.example.com", node1_offerings, node1_providers
     )
     sim_node2 = LocalFederationSimulator(
-        "https://node2.adp.example.com", node2_offerings, node2_providers
+        "https://node2.cdp.example.com", node2_offerings, node2_providers
     )
 
-    client = FederationClient(nodes=["https://node1.adp.example.com", "https://node2.adp.example.com"])
+    client = FederationClient(nodes=["https://node1.cdp.example.com", "https://node2.cdp.example.com"])
     client.register_simulator(sim_node1)
     client.register_simulator(sim_node2)
 

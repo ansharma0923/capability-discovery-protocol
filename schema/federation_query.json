@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://adp.protocol/schema/federation_query.json",
   "title": "FederationQuery",
-  "description": "A federation query wrapping a DiscoveryIntent for inter-node ADP discovery",
+  "description": "A federation query wrapping a DiscoveryIntent for inter-node CDP discovery",
   "type": "object",
   "version": "0.1.0",
   "required": ["federation_id", "version", "source_node", "intent", "timestamp"],
